@@ -1,6 +1,6 @@
 import { lazy } from 'react';
 
-export const MainPageAsync = lazy(() => new Promise((resolve, reject) => {
+export const MainPageAsync = lazy(() => new Promise((resolve) => {
 
     setTimeout(() => {
         // @ts-ignore
