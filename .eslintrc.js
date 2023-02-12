@@ -10,7 +10,7 @@ module.exports = {
         sourceType: 'module',
     },
     parser: '@typescript-eslint/parser',
-    plugins: ['react', '@typescript-eslint', 'i18next'],
+    plugins: ['react', '@typescript-eslint', 'i18next', 'unused-imports'],
     rules: {
         'react/react-in-jsx-scope': 'off',
     },
@@ -19,8 +19,13 @@ module.exports = {
             extends: ['xo-typescript', 'prettier'],
             files: ['*.ts', '*.tsx'],
             rules: {
-                '@typescript-eslint/no-unused-vars': 'error',
                 '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+                '@typescript-eslint/no-unused-vars': 'off',
+                'unused-imports/no-unused-imports': 'error',
+                'unused-imports/no-unused-vars': [
+                    'error',
+                    { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
+                ],
                 '@typescript-eslint/naming-convention': [
                     'error',
                     {
