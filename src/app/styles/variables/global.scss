@@ -1,15 +1,10 @@
 :root {
-  --font-family: Monospace, 'Times New Roman', Serif;
-
-  --font-size-m: 16px;
-  --font-line-m: 24px;
-
-  --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family);
-
-  --font-size-l: 24px;
-  --font-line-l: 32px;
-
-  --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family);
-
-  --nav-bar-height: 75px;
+    --font-family: monospace, "Times New Roman", serif;
+    --font-size-m: 16px;
+    --font-line-m: 24px;
+    --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family);
+    --font-size-l: 24px;
+    --font-line-l: 32px;
+    --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family);
+    --nav-bar-height: 75px;
 }

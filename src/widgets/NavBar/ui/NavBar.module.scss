@@ -1,16 +1,17 @@
 .navbar {
-  width: 100%;
-  height: var(--nav-bar-height);
-  background-color: var(--inverted-bg-color);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    width: 100%;
+    height: var(--nav-bar-height);
+    background-color: var(--inverted-bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .navlinks {
-  display: flex;
-  align-items: center;
-  > div{
-    margin: 0 10px;
-  }
+    display: flex;
+    align-items: center;
+
+    > div {
+        margin: 0 10px;
+    }
 }
