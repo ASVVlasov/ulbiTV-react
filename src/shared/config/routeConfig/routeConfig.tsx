@@ -9,17 +9,16 @@ enum RouteEnum {
 
 const RoutePath: Record<RouteEnum, string> = {
     [RouteEnum.MAIN]: '/',
-    [RouteEnum.ABOUT]: '/about'
-}
-
+    [RouteEnum.ABOUT]: '/about',
+};
 
 export const RouteConfig: Record<RouteEnum, RouteProps> = {
     [RouteEnum.MAIN]: {
         path: RoutePath.main,
-        element: <MainPage/>
+        element: <MainPage />,
     },
     [RouteEnum.ABOUT]: {
         path: RoutePath.about,
-        element: <AboutPage/>
-    }
-}
+        element: <AboutPage />,
+    },
+};
