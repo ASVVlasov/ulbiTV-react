@@ -1,4 +1,4 @@
-import { RouteProps } from 'react-router-dom';
+import { type RouteProps } from 'react-router-dom';
 import { MainPage } from 'pages/MainPage';
 import { AboutPage } from 'pages/AboutPage';
 import { NotFoundPage } from 'pages/NotFoundPage/ui/NotFoundPage';
@@ -6,7 +6,7 @@ import { NotFoundPage } from 'pages/NotFoundPage/ui/NotFoundPage';
 enum RouteEnum {
     MAIN = 'main',
     ABOUT = 'about',
-    NOT_FOUND = 'not_found'
+    NOT_FOUND = 'not_found',
 }
 
 const RoutePath: Record<RouteEnum, string> = {
