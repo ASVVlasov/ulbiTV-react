@@ -3,8 +3,12 @@ import HTMLWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { type BuildOptions } from './types/config';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
-export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPluginInstance[] {
+export function buildPlugins({
+    paths,
+    isDev,
+}: BuildOptions): webpack.WebpackPluginInstance[] {
     return [
         new webpack.ProgressPlugin(),
         new HTMLWebpackPlugin({
@@ -17,7 +21,11 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
             filename: 'css/[name].[contenthash:8].css',
             chunkFilename: 'css/[name].[contenthash:8].css',
         }),
-        new ReactRefreshPlugin(),
+        new ReactRefreshPlugin({ overlay: false }),
+        new BundleAnalyzerPlugin({
+            openAnalyzer: false,
+            analyzerPort: 3500,
+        }),
         new webpack.HotModuleReplacementPlugin(),
     ];
 }

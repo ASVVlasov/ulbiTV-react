@@ -1,17 +1,18 @@
 import './styles/index.scss';
-import { ThemeProvider, useTheme } from 'app/providers/ThemeProvider';
+import { useTheme } from 'app/providers/ThemeProvider';
 import { classNames } from 'shared/lib';
 import { AppRouter } from 'app/providers/routerProvider';
 import { NavBar } from 'widgets/NavBar';
 import { SideBar } from 'widgets/SideBar';
 import { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { ErrorBoundary } from 'widgets/ErrorBoundary';
 
 const App = () => {
     const { theme } = useTheme();
     return (
-        <BrowserRouter>
-            <ThemeProvider>
+        <ErrorBoundary>
+            <BrowserRouter>
                 <div className={classNames('app', {}, [theme])}>
                     <Suspense fallback={<div>loading...</div>}>
                         <NavBar />
@@ -23,8 +24,8 @@ const App = () => {
                         </div>
                     </Suspense>
                 </div>
-            </ThemeProvider>
-        </BrowserRouter>
+            </BrowserRouter>
+        </ErrorBoundary>
     );
 };
 

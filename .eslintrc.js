@@ -13,8 +13,15 @@ module.exports = {
     plugins: ['react', '@typescript-eslint', 'i18next', 'unused-imports'],
     rules: {
         'react/react-in-jsx-scope': 'off',
+        'max-len': 'off',
     },
     overrides: [
+        {
+            files: ['*.test.ts', '*.test.tsx'],
+            rules: {
+                'i18next/no-literal-string': 'off',
+            },
+        },
         {
             extends: ['xo-typescript', 'prettier'],
             files: ['*.ts', '*.tsx'],
@@ -24,7 +31,12 @@ module.exports = {
                 'unused-imports/no-unused-imports': 'error',
                 'unused-imports/no-unused-vars': [
                     'error',
-                    { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },
+                    {
+                        vars: 'all',
+                        varsIgnorePattern: '^_',
+                        args: 'after-used',
+                        argsIgnorePattern: '^_',
+                    },
                 ],
                 '@typescript-eslint/naming-convention': [
                     'error',
@@ -33,7 +45,7 @@ module.exports = {
                         format: ['PascalCase'],
                         custom: {
                             regex: '^I[A-Z]',
-                            match: false,
+                            match: true,
                         },
                     },
                     {
@@ -41,7 +53,7 @@ module.exports = {
                         format: ['PascalCase'],
                         custom: {
                             regex: '^T[A-Z]',
-                            match: false,
+                            match: true,
                         },
                     },
                     {
@@ -49,7 +61,7 @@ module.exports = {
                         format: ['PascalCase'],
                         custom: {
                             regex: '^E[A-Z]',
-                            match: false,
+                            match: true,
                         },
                     },
                 ],

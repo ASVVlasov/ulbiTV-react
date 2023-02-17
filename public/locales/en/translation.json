@@ -4,5 +4,6 @@
     "Главная": "Main",
     "Свернуть": "Collapse",
     "Развернуть": "Expand",
-    "404": "The page not found"
+    "404": "The page not found",
+    "Что-то пошло не так, попробуйте перезагрузить страницу": "Something went wrong. Please reload the page"
 }
