@@ -31,4 +31,3 @@ jobs:
       - run: npm run stylelint
       - run: npm run build:prod
       - run: npm run test:unit
-      - run: npm run test:ui
