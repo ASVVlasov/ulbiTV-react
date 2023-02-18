@@ -2,13 +2,13 @@ import webpack, { DefinePlugin } from 'webpack';
 import HTMLWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import ReactRefreshPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import { type BuildOptions } from './types/config';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import { type IBuildOptions } from './types/config';
 
 export function buildPlugins({
     paths,
     isDev,
-}: BuildOptions): webpack.WebpackPluginInstance[] {
+}: IBuildOptions): webpack.WebpackPluginInstance[] {
     return [
         new webpack.ProgressPlugin(),
         new HTMLWebpackPlugin({

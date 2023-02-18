@@ -3,28 +3,28 @@ import { MainPage } from 'pages/MainPage';
 import { AboutPage } from 'pages/AboutPage';
 import { NotFoundPage } from 'pages/NotFoundPage/ui/NotFoundPage';
 
-enum RouteEnum {
+enum ERouteEnum {
     MAIN = 'main',
     ABOUT = 'about',
     NOT_FOUND = 'not_found',
 }
 
-const RoutePath: Record<RouteEnum, string> = {
-    [RouteEnum.MAIN]: '/',
-    [RouteEnum.ABOUT]: '/about',
-    [RouteEnum.NOT_FOUND]: '*',
+const RoutePath: Record<ERouteEnum, string> = {
+    [ERouteEnum.MAIN]: '/',
+    [ERouteEnum.ABOUT]: '/about',
+    [ERouteEnum.NOT_FOUND]: '*',
 };
 
-export const RouteConfig: Record<RouteEnum, RouteProps> = {
-    [RouteEnum.MAIN]: {
+export const RouteConfig: Record<ERouteEnum, RouteProps> = {
+    [ERouteEnum.MAIN]: {
         path: RoutePath.main,
         element: <MainPage />,
     },
-    [RouteEnum.ABOUT]: {
+    [ERouteEnum.ABOUT]: {
         path: RoutePath.about,
         element: <AboutPage />,
     },
-    [RouteEnum.NOT_FOUND]: {
+    [ERouteEnum.NOT_FOUND]: {
         path: RoutePath.not_found,
         element: <NotFoundPage />,
     },

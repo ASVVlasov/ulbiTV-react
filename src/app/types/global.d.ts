@@ -1,6 +1,6 @@
 declare module '*.module.scss' {
-    type IClassNames = Record<string, string>;
-    const ClassName: IClassNames;
+    type TClassNames = Record<string, string>;
+    const ClassName: TClassNames;
     export = ClassName;
 }
 
