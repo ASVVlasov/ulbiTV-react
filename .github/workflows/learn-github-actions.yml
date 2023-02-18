@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '17.x'
-      - run: npm ci
+      - run: npm i
   lint:
     needs: install
     runs-on: ubuntu-latest
@@ -21,5 +21,5 @@ jobs:
       - uses: action/setup-node@v3
         with:
           node-version: '17.x'
-      - run: npm ci
+      - run: npm i
       - run: npm run eslint
