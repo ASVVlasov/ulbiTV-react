@@ -1,4 +1,4 @@
-name: Deployment
+name: Build & Deploy
 on: push
 jobs:
   lint:
@@ -37,8 +37,8 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        node-version: [16, 18]
-        os: [ubuntu-latest, windows-latest]
+        node-version: [18]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repo code
@@ -57,3 +57,17 @@ jobs:
       - name: Build application
         run: |
           npm run build:prod
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: build
+          name: bundle
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: bundle
+
