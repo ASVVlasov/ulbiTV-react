@@ -9,7 +9,7 @@ export function buildPlugins({
     paths,
     isDev,
 }: IBuildOptions): webpack.WebpackPluginInstance[] {
-    return [
+    const plugins: webpack.WebpackPluginInstance[] = [
         new webpack.ProgressPlugin(),
         new HTMLWebpackPlugin({
             template: paths.html,
@@ -21,11 +21,17 @@ export function buildPlugins({
             filename: 'css/[name].[contenthash:8].css',
             chunkFilename: 'css/[name].[contenthash:8].css',
         }),
-        new ReactRefreshPlugin({ overlay: false }),
-        new BundleAnalyzerPlugin({
-            openAnalyzer: false,
-            analyzerPort: 3500,
-        }),
-        new webpack.HotModuleReplacementPlugin(),
     ];
+    if (isDev) {
+        plugins.push(
+            new ReactRefreshPlugin({ overlay: false }),
+            new BundleAnalyzerPlugin({
+                openAnalyzer: false,
+                analyzerPort: 3500,
+            }),
+            new webpack.HotModuleReplacementPlugin()
+        );
+    }
+
+    return plugins;
 }
