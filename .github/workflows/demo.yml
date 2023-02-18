@@ -5,14 +5,20 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Print to console
-        run: echo Hello GH Actions
+        run: |
+          echo Hello GH Actions
+          dir
   mac_os:
     runs-on: macos-latest
     steps:
       - name: Print to console
-        run: echo Hello GH Actions
+        run: |
+          echo Hello GH Actions
+          ls
   ubuntu:
     runs-on: ubuntu-latest
     steps:
       - name: Print to console
-        run: echo Hello GH Actions
+        run: |
+          echo Hello GH Actions
+          ls
