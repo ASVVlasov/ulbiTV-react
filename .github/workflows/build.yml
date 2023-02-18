@@ -10,3 +10,8 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build:prod
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          path: build
+          name: bundle
