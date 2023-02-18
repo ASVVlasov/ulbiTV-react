@@ -11,9 +11,9 @@ import { ErrorBoundary } from 'widgets/ErrorBoundary';
 const App = () => {
     const { theme } = useTheme();
     return (
-        <ErrorBoundary>
-            <BrowserRouter>
-                <div className={classNames('app', {}, [theme])}>
+        <BrowserRouter>
+            <div className={classNames('app', {}, [theme])}>
+                <ErrorBoundary>
                     <Suspense fallback={<div>loading...</div>}>
                         <NavBar />
                         <div className="content-page">
@@ -23,9 +23,9 @@ const App = () => {
                             </div>
                         </div>
                     </Suspense>
-                </div>
-            </BrowserRouter>
-        </ErrorBoundary>
+                </ErrorBoundary>
+            </div>
+        </BrowserRouter>
     );
 };
 

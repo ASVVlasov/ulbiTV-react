@@ -1,7 +1,7 @@
 import { type FC } from 'react';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { classNames } from 'shared/lib';
-// Import DarkTheme from 'shared/assets/icons/theme-dark.svg';
+import DarkTheme from 'shared/assets/icons/theme-dark.svg';
 import cls from './ThemeSwitcher.module.scss';
 
 export const ThemeSwitcher: FC = () => {
@@ -13,7 +13,7 @@ export const ThemeSwitcher: FC = () => {
             className={classNames(cls.themeSwitcher)}
             onClick={toggleTheme}
         >
-            {/* <DarkTheme /> */}
+            <DarkTheme />
         </button>
     );
 };

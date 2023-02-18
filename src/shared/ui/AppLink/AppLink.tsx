@@ -3,10 +3,10 @@ import { classNames } from 'shared/lib';
 import { Link, type LinkProps } from 'react-router-dom';
 import cls from './AppLink.module.scss';
 
-interface AppLinkProps extends LinkProps {
+export interface IAppLinkProps extends LinkProps {
     variant?: 'primary' | 'secondary';
 }
-export const AppLink: FC<AppLinkProps> = (props) => {
+export const AppLink: FC<IAppLinkProps> = (props) => {
     const { to, children, variant = 'primary', ...otherProps } = props;
     return (
         <div className={classNames(cls.test)}>

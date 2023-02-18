@@ -1,15 +1,16 @@
 import { createContext } from 'react';
 
-export enum Theme {
+export enum ETheme {
     LIGHT = 'light',
     DARK = 'dark',
+    BLUE = 'blue',
 }
-export interface ThemeContextProps {
-    theme: Theme;
-    setTheme: (theme: Theme) => void;
+export interface IThemeContextProps {
+    theme: ETheme;
+    setTheme: (theme: ETheme) => void;
 }
-export const ThemeContext = createContext<ThemeContextProps>({
-    theme: Theme.LIGHT,
+export const ThemeContext = createContext<IThemeContextProps>({
+    theme: ETheme.BLUE,
     setTheme() {
         console.warn('default theme method');
     },

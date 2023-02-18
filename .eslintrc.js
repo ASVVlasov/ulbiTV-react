@@ -4,7 +4,12 @@ module.exports = {
         es2021: true,
         jest: true,
     },
-    extends: ['plugin:react/recommended', 'xo', 'plugin:i18next/recommended', 'prettier'],
+    extends: [
+        'plugin:react/recommended',
+        'xo',
+        'plugin:i18next/recommended',
+        'prettier',
+    ],
     parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
@@ -13,20 +18,18 @@ module.exports = {
     plugins: ['react', '@typescript-eslint', 'i18next', 'unused-imports'],
     rules: {
         'react/react-in-jsx-scope': 'off',
-        'max-len': 'off',
+        'max-len': ['error', { code: 80 }],
     },
     overrides: [
-        {
-            files: ['*.test.ts', '*.test.tsx'],
-            rules: {
-                'i18next/no-literal-string': 'off',
-            },
-        },
         {
             extends: ['xo-typescript', 'prettier'],
             files: ['*.ts', '*.tsx'],
             rules: {
-                '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+                'react/display-name': 'off',
+                '@typescript-eslint/consistent-type-definitions': [
+                    'error',
+                    'interface',
+                ],
                 '@typescript-eslint/no-unused-vars': 'off',
                 'unused-imports/no-unused-imports': 'error',
                 'unused-imports/no-unused-vars': [
@@ -65,6 +68,19 @@ module.exports = {
                         },
                     },
                 ],
+            },
+        },
+        {
+            files: ['*.test.ts', '*.test.tsx'],
+            rules: {
+                'i18next/no-literal-string': 'off',
+            },
+        },
+        {
+            files: ['*.stories.tsx'],
+            rules: {
+                '@typescript-eslint/no-unsafe-assignment': 'off',
+                '@typescript-eslint/consistent-type-assertions': 'off',
             },
         },
     ],

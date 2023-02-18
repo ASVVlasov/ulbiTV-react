@@ -1,0 +1,18 @@
+.Button {
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 4px;
+  height: 56px;
+  padding: 0 31px;
+  font-family: "VTB Group UI", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  font-feature-settings: "tnum", "lnum";
+
+  &.danger {
+    color: var(--danger-color);
+  }
+}
