@@ -23,6 +23,7 @@ jobs:
         run: |
           npm run test:unit
   build:
+    needs: [test, lint]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo code
