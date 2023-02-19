@@ -19,6 +19,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
   lint:
+    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo code
@@ -35,6 +36,7 @@ jobs:
           npm run eslint
           npm run stylelint
   test:
+    needs: install
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo code
