@@ -8,8 +8,11 @@ export interface IAppLinkProps extends LinkProps {
 }
 export const AppLink: FC<IAppLinkProps> = (props) => {
     const { to, children, variant = 'primary', ...otherProps } = props;
+    const mods: Record<string, boolean> = {
+        [cls[variant]]: true,
+    };
     return (
-        <div className={classNames(cls.AppLink, {}, [cls[variant]])}>
+        <div className={classNames(cls.AppLink, mods, [])}>
             <Link to={to} {...otherProps} className={classNames(cls[variant])}>
                 {children}
             </Link>

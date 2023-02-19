@@ -1,18 +1,38 @@
+@mixin theme($primary: true) {
+  $secondary: 'secondary';
+  @if $primary == 'secondary' {
+    $primary: 'secondary';
+    $secondary: 'primary';
+  }
+  &.#{$primary} {
+    color: var(--#{$primary}-text-color);
+    background-color: var(--#{$primary}-bg-color);
+    border: 2px solid var(--alternative-bg-color);
+
+    &:hover {
+      background-color: var(--#{$secondary}-bg-color);
+      color: var(--#{$secondary}-text-color);
+    }
+  }
+}
+
+@mixin size($size) {
+  &.size_#{$size} {
+    font: var(--font-#{$size});
+  }
+}
+
 .Button {
-  color: var(--secondary-color);
-  background-color: var(--primary-color);
-  border: 1px solid var(--secondary-color);
-  border-radius: 4px;
+  border-radius: 6px;
   height: 56px;
   padding: 0 31px;
-  font-family: "VTB Group UI", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  font-feature-settings: "tnum", "lnum";
-
-  &.danger {
-    color: var(--danger-color);
-  }
+  cursor: pointer;
+  @include size('s');
+  @include size('m');
+  @include size('l');
+  @include size('xl');
+  @include theme('primary');
+  @include theme('secondary');
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { type ComponentStory, type ComponentMeta } from '@storybook/react';
 
-import { Button } from './Button';
+import { Button, EButtonSize } from './Button';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -16,5 +16,33 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {
-    variant: 'danger',
+    children: 'button',
+};
+
+export const Secondary = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+Secondary.args = {
+    children: 'button',
+    variant: 'secondary',
+};
+
+export const PrimaryM = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+PrimaryM.args = {
+    children: 'button',
+    size: EButtonSize.M,
+};
+
+export const PrimaryL = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+PrimaryL.args = {
+    children: 'button',
+    size: EButtonSize.L,
+};
+
+export const PrimaryXL = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+PrimaryXL.args = {
+    children: 'button',
+    size: EButtonSize.XL,
 };

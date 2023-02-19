@@ -1,9 +1,11 @@
 .AppLink {
-    a {
-        color: var(--primary-bg-color);
+    &.primary {
+        a {
+            color: var(--secondary-text-color);
 
-        &:hover {
-            color: var(--primary-color);
+            &:hover {
+                color: var(--alternative-text-color);
+            }
         }
     }
 }

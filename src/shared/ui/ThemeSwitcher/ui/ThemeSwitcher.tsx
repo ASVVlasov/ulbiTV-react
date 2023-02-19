@@ -7,13 +7,12 @@ import cls from './ThemeSwitcher.module.scss';
 export const ThemeSwitcher: FC = () => {
     const { toggleTheme } = useTheme();
     return (
-        <button
+        <div
             data-testid="theme-switcher"
-            type="button"
             className={classNames(cls.themeSwitcher)}
             onClick={toggleTheme}
         >
             <DarkTheme />
-        </button>
+        </div>
     );
 };

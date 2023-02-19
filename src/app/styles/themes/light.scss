@@ -1,11 +1,15 @@
 .app.light {
-    --primary-color: var(--color-primary-600);
-    --secondary-color: var(--color-primary-400);
+    --primary-text-color: var(--color-primary-900);
+    --secondary-text-color: var(--color-primary-100);
     --primary-bg-color: var(--color-primary-100);
-    --primary-border-color: var(--color-primary-300);
+    --secondary-bg-color: var(--color-primary-900);
+    --primary-border-color: var(--color-primary-700);
     --secondary-border-color: var(--color-primary-500);
-    --success-color: var(--color-success-600);
-    --danger-color: var(--color-danger-600);
-    --warning-color: var(--color-warning-600);
-    --info-color: var(--color-info-600);
+    --alternative-text-color: var(--color-primary-800);
+    --alternative-bg-color: var(--color-primary-300);
+    --alternative-border-color: var(--color-primary-600);
+    --success-color: var(--color-success-400);
+    --danger-color: var(--color-danger-400);
+    --warning-color: var(--color-warning-400);
+    --info-color: var(--color-info-400);
 }
