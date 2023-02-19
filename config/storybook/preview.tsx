@@ -18,7 +18,7 @@ const withLayout: DecoratorFn = (StoryFn) => {
     const className = {
         width: '100%',
         display: 'flex',
-        padding: '15px 20px',
+        padding: '15px 15px',
     };
     return (
         <div className={`app light`} style={className}>
