@@ -1,7 +1,12 @@
 @import "mixins";
-
+@font-face {
+    font-family: 'Monospace';
+    src: url('app/styles/fonts/MonospaceRegular.ttf'),
+    url('app/styles/fonts/MonospaceBold.ttf'),
+    url('app/styles/fonts/MonospaceOblique.ttf');
+}
 :root {
-    --font-family: monospace, 'Times New Roman', serif;
+    --font-family: 'Monospace', 'Times New Roman', serif;
     --nav-bar-height: 75px;
     
     @include font-size('s');
