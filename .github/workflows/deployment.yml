@@ -36,6 +36,9 @@ jobs:
           npm run eslint
           npm run stylelint
   test:
+    permissions:
+      contents: write
+      pull-requests: write
     needs: install
     runs-on: ubuntu-latest
     strategy:
@@ -54,7 +57,19 @@ jobs:
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Test application
+        id: screenshots
         run: ${{matrix.test}}
+      - name: after
+        if: ${{ failure() && steps.screnshots.conslusion == 'failure' }}
+        run: |
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -f ./loki/difference
+          git add .
+          git checkout -b save-screenshots
+          git commit -am "screenshots failure"
+          git push -f origin save-screenshots
   build:
     needs: install
     continue-on-error: true
