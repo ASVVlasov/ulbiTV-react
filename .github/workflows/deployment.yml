@@ -16,7 +16,7 @@ jobs:
         id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
   lint:
@@ -30,8 +30,7 @@ jobs:
         id: npm-cache
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install Dependencies
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
@@ -46,11 +45,13 @@ jobs:
       - name: Checkout repo code
         uses: actions/checkout@v3
       - name: Restore cache of NPM dependencies
-        uses: actions/cache/restore@v3
+        uses: actions/cache@v3
+        id: npm-cache
         with:
           path: node_modules
-          key: npm-cache-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install Dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Test application
         run: |
@@ -71,11 +72,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Restore cache of NPM dependencies
-        uses: actions/cache/restore@v3
+        uses: actions/cache@v3
+        id: npm-cache
         with:
-          path: ~/.npm
-          key: npm-cache-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install Dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Build application
         run: |
