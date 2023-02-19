@@ -39,6 +39,7 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+    continue-on-error: true
     strategy:
       matrix:
         node-version: [16, 18]
