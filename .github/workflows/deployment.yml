@@ -53,13 +53,13 @@ jobs:
       - name: Install Dependencies
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
-      - name: Test application
+      - name: Unit Tests
+        run: npm run test:unit
+      - name: Screenshot Tests
         id: screenshots
-        run: |
-          npm run test:unit
-          npm run test:ui:ci
+        run: npm run test:ui:ci
       - name: after
-        if: ${{ failure() && steps.screnshots.conslusion == 'failure' }}
+        if: ${{ failure() && steps.screenshots.conclusion == 'failure' }}
         run: |
           date > generated.txt
           git config user.name github-actions
