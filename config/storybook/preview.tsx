@@ -1,9 +1,11 @@
 import { StyleDecorator } from 'shared/lib/storybook/StyleDecorator';
 import { RouterDecorator } from 'shared/lib/storybook/RouterDecorator';
 
+import { type DecoratorFn } from '@storybook/react';
+
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
-    layout: 'centered',
+    layout: 'fullscreen',
     controls: {
         matchers: {
             color: /(background|color)$/i,
@@ -12,4 +14,17 @@ export const parameters = {
     },
 };
 
-export const decorators = [StyleDecorator, RouterDecorator];
+const withLayout: DecoratorFn = (StoryFn) => {
+    const className = {
+        width: '100%',
+        display: 'flex',
+        padding: '15px 20px',
+    };
+    return (
+        <div className={`app light`} style={className}>
+            <StoryFn />
+        </div>
+    );
+};
+
+export const decorators = [withLayout, StyleDecorator, RouterDecorator];
