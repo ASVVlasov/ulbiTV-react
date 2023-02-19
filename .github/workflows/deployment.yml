@@ -1,18 +1,35 @@
 name: Build & Deploy
-on: push
+on:
+  push:
+    branches:
+      - master
+  pull-request:
+    types: [opened, reopened, edited]
 jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo code
+        uses: actions/checkout@v3
+      - name: Cache NPM dependencies
+        uses: actions/cache/save@v3
+        with:
+          path: ~/.npm
+          key: npm-cache-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies
+        run: npm ci
   lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
-      - name: Cache deps
-        uses: actions/cache@v3
+      - name: Restore cache of NPM dependencies
+        uses: actions/cache/restore@v3
         with:
           path: ~/.npm
-          key: node-modules-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
-        run: npm ci
+          key: npm-cache-${{ hashFiles('**/package-lock.json') }}
+#      - name: Install dependencies
+#        run: npm ci
       - name: Lint application
         run: |
           npm run eslint
@@ -22,11 +39,11 @@ jobs:
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
-      - name: Cache deps
-        uses: actions/cache@v3
+      - name: Restore cache of NPM dependencies
+        uses: actions/cache/restore@v3
         with:
           path: ~/.npm
-          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+          key: npm-cache-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
       - name: Test application
@@ -47,11 +64,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Cache deps
-        uses: actions/cache@v3
+      - name: Restore cache of NPM dependencies
+        uses: actions/cache/restore@v3
         with:
           path: ~/.npm
-          key: node-modules-${{ hashFiles('**/package-lock.json') }}
+          key: npm-cache-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm ci
       - name: Build application
