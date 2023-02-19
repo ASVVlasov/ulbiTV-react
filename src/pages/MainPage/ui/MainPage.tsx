@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useEffect, useState } from 'react';
+import { Button } from 'shared/ui/Button/ui/Button';
 
 const MainPage = () => {
     const { t } = useTranslation();
@@ -17,9 +18,9 @@ const MainPage = () => {
     return (
         <div>
             {t('Главная')}
-            <button type="button" onClick={hackThisSite}>
+            <Button type="button" onClick={hackThisSite}>
                 {t('Hack this site')}
-            </button>
+            </Button>
         </div>
     );
 };

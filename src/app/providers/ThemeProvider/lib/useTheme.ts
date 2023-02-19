@@ -10,13 +10,8 @@ export const useTheme = (): IUseThemeResult => {
     const toggleTheme = () => {
         let newTheme: ETheme;
         switch (theme) {
-            case ETheme.BLUE: {
-                newTheme = ETheme.DARK;
-                break;
-            }
-
             case ETheme.LIGHT: {
-                newTheme = ETheme.BLUE;
+                newTheme = ETheme.DARK;
                 break;
             }
 
@@ -26,7 +21,7 @@ export const useTheme = (): IUseThemeResult => {
             }
 
             default: {
-                newTheme = ETheme.BLUE;
+                newTheme = ETheme.LIGHT;
             }
         }
 

@@ -9,7 +9,7 @@ export interface IAppLinkProps extends LinkProps {
 export const AppLink: FC<IAppLinkProps> = (props) => {
     const { to, children, variant = 'primary', ...otherProps } = props;
     return (
-        <div className={classNames(cls.test)}>
+        <div className={classNames(cls.AppLink, {}, [cls[variant]])}>
             <Link to={to} {...otherProps} className={classNames(cls[variant])}>
                 {children}
             </Link>
