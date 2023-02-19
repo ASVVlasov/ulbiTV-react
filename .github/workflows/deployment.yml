@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        test: ['npm run test:unit', 'npm run test:ui']
+        test: ['npm run test:unit', 'npm run test:ui:ci']
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
