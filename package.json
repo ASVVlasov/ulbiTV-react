@@ -12,8 +12,12 @@
     "stylelint": "stylelint \"**/*.scss\"",
     "stylelint:fix": "stylelint \"**/*.scss\" --fix",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
-    "test:ui": "npx loki test",
-    "test:ui:ok": "npx loki approve",
+    "test:ui": "loki test",
+    "test:ui:ci": "npm run storybook:build && loki --requireReference --reactUri file:./storybook-static",
+    "test:ui:ok": "npm run storybook:build && loki update --requireReference --reactUri file:./storybook-static",
+    "visual:report": "npm run visual:report:json && npm run visual:report:html",
+    "visual:report:json": "node scripts/loki_reports.js",
+    "visual:report:html": "reg-cli --from .loki/report.json --report .loki/report.html",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
     "storybook:build": "build-storybook -c ./config/storybook",
     "prettier": "prettier --write *"
@@ -69,6 +73,7 @@
     "mini-css-extract-plugin": "^2.7.2",
     "prettier": "2.8.4",
     "react-refresh": "^0.14.0",
+    "reg-cli": "^0.17.7",
     "sass": "^1.57.1",
     "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",
@@ -91,20 +96,5 @@
     "react-dom": "^17.0.2",
     "react-i18next": "^12.1.5",
     "react-router-dom": "^6.2.1"
-  },
-  "loki": {
-    "configurations": {
-      "chrome.laptop": {
-        "target": "chrome.app",
-        "width": 1366,
-        "height": 768,
-        "deviceScaleFactor": 1,
-        "mobile": false
-      },
-      "chrome.iphone7": {
-        "target": "chrome.app",
-        "preset": "iPhone 7"
-      }
-    }
   }
 }

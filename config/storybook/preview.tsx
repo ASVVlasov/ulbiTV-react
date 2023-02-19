@@ -5,7 +5,7 @@ import { type DecoratorFn } from '@storybook/react';
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
-    layout: 'centered',
+    layout: 'fullscreen',
     controls: {
         matchers: {
             color: /(background|color)$/i,
@@ -14,27 +14,17 @@ export const parameters = {
     },
 };
 
-export const globalTypes = {
-    theme: {
-        name: 'Theme',
-        description: 'Global theme for components',
-        defaultValue: 'light',
-        toolbar: {
-            icon: 'circlehollow',
-            // Array of plain string values or MenuItem shape (see below)
-            items: ['light', 'dark', 'blue'],
-            // Property that specifies if the name of the item will be displayed
-            title: 'Theme',
-            // Change title based on selected value
-            dynamicTitle: false,
-        },
-    },
+const withLayout: DecoratorFn = (StoryFn) => {
+    const className = {
+        width: '100%',
+        display: 'flex',
+        padding: '15px 20px',
+    };
+    return (
+        <div className={`app light`} style={className}>
+            <StoryFn />
+        </div>
+    );
 };
 
-const withTheme: DecoratorFn = (StoryFn, context) => (
-    <div className={`app ${context.globals.theme as string}`}>
-        <StoryFn />
-    </div>
-);
-
-export const decorators = [withTheme, StyleDecorator, RouterDecorator];
+export const decorators = [withLayout, StyleDecorator, RouterDecorator];

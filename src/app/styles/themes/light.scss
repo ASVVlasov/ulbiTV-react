@@ -1,8 +1,15 @@
 .app.light {
-    --bg-color: white;
-    --inverted-bg-color: black;
-    --primary-color: black;
-    --inverted-primary-color: white;
-    --secondary-color: gray;
-    --inverted-secondary-color: #2e2e2e;
+    --primary-text-color: var(--color-primary-900);
+    --secondary-text-color: var(--color-primary-100);
+    --primary-bg-color: var(--color-primary-100);
+    --secondary-bg-color: var(--color-primary-900);
+    --primary-border-color: var(--color-primary-700);
+    --secondary-border-color: var(--color-primary-500);
+    --alternative-text-color: var(--color-primary-800);
+    --alternative-bg-color: var(--color-primary-300);
+    --alternative-border-color: var(--color-primary-600);
+    --success-color: var(--color-success-400);
+    --danger-color: var(--color-danger-400);
+    --warning-color: var(--color-warning-400);
+    --info-color: var(--color-info-400);
 }

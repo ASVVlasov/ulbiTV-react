@@ -6,7 +6,7 @@ import {
 } from '../lib/ThemeContext';
 
 const savedTheme: ETheme =
-    (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as ETheme) || ETheme.BLUE;
+    (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as ETheme) || ETheme.LIGHT;
 export const ThemeProvider: FC = ({ children }) => {
     const [theme, setTheme] = useState(savedTheme);
     const themeProps = useMemo(() => ({ theme, setTheme }), [theme]);

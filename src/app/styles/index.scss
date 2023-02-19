@@ -2,17 +2,25 @@
 @import './variables/global';
 @import './themes/dark';
 @import './themes/light';
-@import "./themes/blue";
 
 .app {
     font: var(--font-m);
     background: var(--primary-bg-color);
-    color: var(--primary-color);
+    color: var(--primary-text-color);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+a {
+    text-decoration: none;
 }
 
 .content-page {
     display: flex;
+    flex-grow: 1;
 }
 
 .page-wrapper {

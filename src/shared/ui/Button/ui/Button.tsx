@@ -1,27 +1,28 @@
-import { type ButtonHTMLAttributes, type FC, useMemo } from 'react';
+import { type ButtonHTMLAttributes, type FC } from 'react';
 import { classNames } from 'shared/lib';
 import cls from './Button.module.scss';
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: string;
+    variant?: 'primary' | 'secondary';
+    size?: EButtonSize;
+}
+export enum EButtonSize {
+    S = 'size_s',
+    M = 'size_m',
+    L = 'size_l',
+    XL = 'size_xl',
 }
 export const Button: FC<IButtonProps> = ({
-    variant,
+    variant = 'primary',
+    size = EButtonSize.M,
     children,
     ...otherProps
 }) => {
-    const additionalClasses = useMemo(() => {
-        const result = [];
-        if (variant) {
-            result.push(cls[variant]);
-        }
-
-        return result;
-    }, [variant]);
+    const mods: Record<string, boolean> = {
+        [cls[variant]]: true,
+        [cls[size]]: true,
+    };
     return (
-        <button
-            className={classNames(cls.Button, {}, additionalClasses)}
-            {...otherProps}
-        >
+        <button className={classNames(cls.Button, mods, [])} {...otherProps}>
             {children}
         </button>
     );

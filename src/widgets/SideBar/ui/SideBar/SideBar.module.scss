@@ -1,9 +1,10 @@
 .SideBar {
     width: 300px;
-    background-color: var(--inverted-bg-color);
-    height: calc(100vh - var(--nav-bar-height));
+    background-color: var(--alternative-bg-color);
+    box-shadow: 6px 0 5px -5px var(--alternative-bg-color);
     position: relative;
     transition: width 0.2s;
+    padding: 10px 15px;
 }
 
 .collapsed {

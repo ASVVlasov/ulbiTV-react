@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import cls from './NavBar.module.scss';
 
 export const NavBar: FC = () => {
+    const { t: aboutT } = useTranslation('aboutPage');
     const { t } = useTranslation();
     return (
         <div className={classNames(cls.navbar)}>
@@ -13,7 +14,7 @@ export const NavBar: FC = () => {
                     {t('Главная')}
                 </AppLink>
                 <AppLink to="/about" variant="primary">
-                    {t('О сайте')}
+                    {aboutT('О сайте')}
                 </AppLink>
             </div>
         </div>
