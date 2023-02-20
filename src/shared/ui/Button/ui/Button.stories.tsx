@@ -2,6 +2,8 @@ import React from 'react';
 import { type ComponentStory, type ComponentMeta } from '@storybook/react';
 
 import { Button, EButtonSize } from './Button';
+import { themeDecorator } from 'shared/lib/storybook/ThemeDecorator';
+import { ETheme } from 'app/providers/ThemeProvider/lib/ThemeContext';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -12,7 +14,7 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
-
+Template.decorators = [themeDecorator(ETheme.DARK)];
 export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {

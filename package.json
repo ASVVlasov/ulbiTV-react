@@ -20,7 +20,8 @@
     "visual:report:html": "reg-cli --from .loki/report.json --report .loki/report.html",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
     "storybook:build": "build-storybook -c ./config/storybook",
-    "prettier": "prettier --write *"
+    "prettier": "prettier --write *",
+    "chromatic": "npx chromatic --project-token=cc822a2f0302 -b storybook:build"
   },
   "keywords": [],
   "author": "",
@@ -56,6 +57,7 @@
     "@typescript-eslint/parser": "^5.52.0",
     "babel-jest": "^29.4.2",
     "babel-loader": "^8.3.0",
+    "chromatic": "^6.17.0",
     "css-loader": "^6.7.3",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
@@ -96,5 +98,7 @@
     "react-dom": "^17.0.2",
     "react-i18next": "^12.1.5",
     "react-router-dom": "^6.2.1"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "ulbi-tv-react@1.0.0"
 }
