@@ -45,7 +45,7 @@ jobs:
       pull-requests: write
     continue-on-error: true
     needs: install
-    runs-on: $${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
