@@ -95,7 +95,7 @@ jobs:
           path: build
           name: bundle
   deploy:
-    needs: build
+    needs: [build, lint, test]
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifact
