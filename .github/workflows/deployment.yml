@@ -44,8 +44,6 @@ jobs:
       matrix:
         node-version: [16, 18]
         os: [ubuntu-latest, windows-latest, macos-latest]
-        ui_test: ['npm run test:ui:ci']
-        unit_test: ['npm run test:unit']
     needs: install
     runs-on: $${{ matrix.os }}
     steps:
@@ -65,10 +63,10 @@ jobs:
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Unit Tests
-        run: ${{ matrix.unit_test }}
+        run: npm run test:unit
       - name: Screenshot Tests
         id: screenshots
-        run: ${{ matrix.ui_test }}
+        run: npm run test:ui:ci
       - name: after
         if: ${{ failure() && steps.screenshots.conclusion == 'failure' }}
         run: |
