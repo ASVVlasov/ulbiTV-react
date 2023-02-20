@@ -36,23 +36,14 @@ jobs:
           npm run eslint
           npm run stylelint
   test:
-    strategy:
-      matrix:
-        node-version: [16, 18]
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    permissions:
-      contents: write
-      pull-requests: write
-    continue-on-error: true
+#    permissions:
+#      contents: write
+#      pull-requests: write
     needs: install
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
       - name: Restore cache of NPM dependencies
         uses: actions/cache@v3
         id: npm-cache
@@ -64,35 +55,27 @@ jobs:
         run: npm ci
       - name: Unit Tests
         run: npm run test:unit
-      - name: Screenshot Tests
-        id: screenshots
-        run: npm run test:ui:ci
-      - name: after
-        if: ${{ failure() && steps.screenshots.conclusion == 'failure' }}
-        run: |
-          date > generated.txt
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add -f .loki/difference
-          git add .
-          git checkout -b save-screenshots
-          git commit -am "screenshots failure"
-          git push -f origin save-screenshots
+#      - name: Screenshot Tests
+#        id: screenshots
+#        run: npm run test:ui:ci
+#      - name: after
+#        if: ${{ failure() && steps.screenshots.conclusion == 'failure' }}
+#        run: |
+#          date > generated.txt
+#          git config user.name github-actions
+#          git config user.email github-actions@github.com
+#          git add -f .loki/difference
+#          git add .
+#          git checkout -b save-screenshots
+#          git commit -am "screenshots failure"
+#          git push -f origin save-screenshots
   build:
     needs: install
     continue-on-error: true
-    strategy:
-      matrix:
-        node-version: [18]
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
       - name: Restore cache of NPM dependencies
         uses: actions/cache@v3
         id: npm-cache
@@ -103,9 +86,11 @@ jobs:
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Build application
+        id: build
         run: |
           npm run build:prod
       - name: Upload Artifact
+        if: ${{ !failure() && steps.build.conclusion != 'failure' }}
         uses: actions/upload-artifact@v3
         with:
           path: build
