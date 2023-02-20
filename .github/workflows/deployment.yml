@@ -71,7 +71,6 @@ jobs:
 #          git push -f origin save-screenshots
   build:
     needs: install
-    continue-on-error: true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo code
