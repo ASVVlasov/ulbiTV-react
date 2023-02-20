@@ -1,19 +1,7 @@
 @import "mixins";
-@font-face {
-    font-family: 'Consola Mono';
-    src: local('Consola Mono'), local('ConsolaMono'), url('app/styles/fonts/consolamono.woff2') format('woff2'), url('app/styles/fonts/consolamono.woff') format('woff'), url('app/styles/fonts/consolamono.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'Consola Mono';
-    src: local('Consola Mono Bold'), local('ConsolaMono-Bold'), url('app/styles/fonts/consolamonobold.woff2') format('woff2'), url('app/styles/fonts/consolamonobold.woff') format('woff'), url('app/styles/fonts/consolamonobold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-}
 
 :root {
-    --font-family: 'Times New Roman', serif;
+    --font-family: consolas, menlo, 'Times New Roman', serif;
     --nav-bar-height: 75px;
     
     @include font-size('s');

@@ -30,16 +30,33 @@ export const SideBar: FC = () => {
             data-testid="sidebar"
             className={classNames(cls.SideBar, { [cls.collapsed]: collapsed })}
         >
-            <Button data-testid="toggleButton" type="button" onClick={toggle}>
-                {t(collapsed ? 'Развернуть' : 'Свернуть')}
-            </Button>
-            <Button type="button" onClick={hackThisSite}>
-                {t('Hack this site')}
-            </Button>
-            <div className={cls.switchers}>
-                <ThemeSwitcher />
-                <LangSwitcher data-testid="langSwitcher" />
+            <div className="content">
+                <Button
+                    type="button"
+                    onClick={hackThisSite}
+                    buttonType={collapsed ? 'square' : 'normal'}
+                >
+                    {t(collapsed ? '.|..' : 'Hack this site')}
+                </Button>
             </div>
+            <div
+                className={classNames(cls.switchers, {
+                    [cls.collapsed]: collapsed,
+                })}
+            >
+                <ThemeSwitcher />
+                <LangSwitcher
+                    collapsed={collapsed}
+                    data-testid="langSwitcher"
+                />
+            </div>
+            <Button
+                onClick={toggle}
+                buttonType={'square'}
+                className={classNames(cls.collapsedBtn)}
+            >
+                {collapsed ? '>' : '<'}
+            </Button>
         </div>
     );
 };

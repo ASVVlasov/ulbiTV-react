@@ -2,6 +2,7 @@ import React from 'react';
 import { type ComponentStory, type ComponentMeta } from '@storybook/react';
 
 import { AppLink } from './AppLink';
+import { RouterDecorator } from 'shared/lib/storybook/RouterDecorator';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -19,3 +20,5 @@ Primary.args = {
     to: '/',
     children: 'Button',
 };
+
+Primary.decorators = [RouterDecorator]

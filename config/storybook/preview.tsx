@@ -1,7 +1,6 @@
-import { StyleDecorator } from 'shared/lib/storybook/StyleDecorator';
-import { RouterDecorator } from 'shared/lib/storybook/RouterDecorator';
-
-import { type DecoratorFn } from '@storybook/react';
+import { type DecoratorFn, type Story } from '@storybook/react';
+import 'app/styles/index.scss';
+import { BrowserRouter } from 'react-router-dom';
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -19,12 +18,19 @@ const withLayout: DecoratorFn = (StoryFn) => {
         width: '100%',
         display: 'flex',
         padding: '15px 15px',
+        height: '100vh',
     };
     return (
-        <div className={`app light`} style={className}>
+        <div style={className}>
             <StoryFn />
         </div>
     );
 };
 
-export const decorators = [withLayout, StyleDecorator, RouterDecorator];
+const WithRouter = (StoryComponent: Story) => (
+    <BrowserRouter>
+        <StoryComponent />
+    </BrowserRouter>
+);
+
+export const decorators = [withLayout, WithRouter];

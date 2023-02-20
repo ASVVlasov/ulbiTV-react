@@ -10,10 +10,10 @@ export const NavBar: FC = () => {
     return (
         <div className={classNames(cls.navbar)}>
             <div className={classNames(cls.navlinks)}>
-                <AppLink to="/" variant="primary">
+                <AppLink to="/" variant="secondary" size="l">
                     {t('Главная')}
                 </AppLink>
-                <AppLink to="/about" variant="primary">
+                <AppLink to="/about" variant="secondary" size="l">
                     {aboutT('О сайте')}
                 </AppLink>
             </div>
