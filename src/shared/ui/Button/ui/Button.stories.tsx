@@ -1,7 +1,7 @@
 import React from 'react';
 import { type ComponentStory, type ComponentMeta } from '@storybook/react';
 
-import { Button, EButtonSize } from './Button';
+import { Button } from './Button';
 import { themeDecorator } from 'shared/lib/storybook/ThemeDecorator';
 import { ETheme } from 'app/providers/ThemeProvider/lib/ThemeContext';
 
@@ -15,36 +15,19 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 Template.decorators = [themeDecorator(ETheme.DARK)];
-export const Primary = Template.bind({});
+
+const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {
-    children: 'button',
+    buttonType: 'normal',
+    variant: 'primary',
 };
 
-export const Secondary = Template.bind({});
+const Secondary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Secondary.args = {
-    children: 'button',
-    variant: 'secondary',
+    buttonType: 'normal',
+    variant: 'primary',
 };
 
-export const PrimaryM = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-PrimaryM.args = {
-    children: 'button',
-    size: EButtonSize.M,
-};
-
-export const PrimaryL = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-PrimaryL.args = {
-    children: 'button',
-    size: EButtonSize.L,
-};
-
-export const PrimaryXL = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
-PrimaryXL.args = {
-    children: 'button',
-    size: EButtonSize.XL,
-};
+Secondary.decorators = [themeDecorator(ETheme.LIGHT)];

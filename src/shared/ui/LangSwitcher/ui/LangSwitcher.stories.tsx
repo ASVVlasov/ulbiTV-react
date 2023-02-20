@@ -17,8 +17,14 @@ const Template: ComponentStory<typeof LangSwitcher> = (args) => (
     <LangSwitcher {...args} />
 );
 
-export const Primary = Template.bind({});
+const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {};
 
 Primary.decorators = [themeDecorator(ETheme.DARK)];
+
+export const Secondary = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+Secondary.args = {};
+
+Secondary.decorators = [themeDecorator(ETheme.LIGHT)];
