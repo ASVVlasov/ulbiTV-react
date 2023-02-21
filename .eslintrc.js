@@ -79,6 +79,7 @@ module.exports = {
         {
             files: ['*.stories.tsx'],
             rules: {
+                'i18next/no-literal-string': 'off',
                 '@typescript-eslint/no-unsafe-assignment': 'off',
                 '@typescript-eslint/consistent-type-assertions': 'off',
             },

@@ -35,10 +35,7 @@ jobs:
         run: |
           npm run eslint
           npm run stylelint
-  test:
-#    permissions:
-#      contents: write
-#      pull-requests: write
+  test-unit:
     needs: install
     runs-on: ubuntu-latest
     steps:
@@ -55,20 +52,38 @@ jobs:
         run: npm ci
       - name: Unit Tests
         run: npm run test:unit
-#      - name: Screenshot Tests
-#        id: screenshots
-#        run: npm run test:ui:ci
-#      - name: after
-#        if: ${{ failure() && steps.screenshots.conclusion == 'failure' }}
-#        run: |
-#          date > generated.txt
-#          git config user.name github-actions
-#          git config user.email github-actions@github.com
-#          git add -f .loki/difference
-#          git add .
-#          git checkout -b save-screenshots
-#          git commit -am "screenshots failure"
-#          git push -f origin save-screenshots
+  test-ui:
+    permissions:
+      contents: write
+      pull-requests: write
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo code
+        uses: actions/checkout@v3
+      - name: Restore cache of NPM dependencies
+        uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install Dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm ci
+      - name: Screenshot Tests
+        id: screenshots
+        run: npm run test:ui:ci
+      - name: after
+        if: ${{ failure() && steps.screenshots.conclusion == 'failure' }}
+        run: |
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -f .loki/difference
+          git add .
+          git checkout -b save-screenshots
+          git commit -am "screenshots failure"
+          git push -f origin save-screenshots
   build:
     needs: install
     runs-on: ubuntu-latest
@@ -95,7 +110,7 @@ jobs:
           path: build
           name: bundle
   deploy:
-    needs: [build, lint, test]
+    needs: [build, lint, test-unit, test-ui]
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifact

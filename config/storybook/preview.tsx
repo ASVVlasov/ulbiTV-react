@@ -1,6 +1,7 @@
-import { type DecoratorFn, type Story } from '@storybook/react';
-import 'app/styles/index.scss';
-import { BrowserRouter } from 'react-router-dom';
+import { RouterDecorator } from 'shared/lib/storybook/RouterDecorator';
+import { StyleDecorator } from 'shared/lib/storybook/StyleDecorator';
+import { DEFAULT_VIEWPORT, MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { themeDecorator } from 'shared/lib/storybook/ThemeDecorator';
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -11,26 +12,12 @@ export const parameters = {
             date: /Date$/,
         },
     },
+    viewport: {
+        viewports: {
+            ...MINIMAL_VIEWPORTS,
+            defaultViewport: DEFAULT_VIEWPORT,
+        },
+    },
 };
 
-const withLayout: DecoratorFn = (StoryFn) => {
-    const className = {
-        width: '100%',
-        display: 'flex',
-        padding: '15px 15px',
-        height: '100vh',
-    };
-    return (
-        <div style={className}>
-            <StoryFn />
-        </div>
-    );
-};
-
-const WithRouter = (StoryComponent: Story) => (
-    <BrowserRouter>
-        <StoryComponent />
-    </BrowserRouter>
-);
-
-export const decorators = [withLayout, WithRouter];
+export const decorators = [StyleDecorator, RouterDecorator, themeDecorator];

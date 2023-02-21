@@ -1,9 +1,7 @@
 import React from 'react';
-import { type ComponentStory, type ComponentMeta } from '@storybook/react';
+import { type ComponentMeta, type ComponentStory } from '@storybook/react';
 
-import { Button } from './Button';
-import { themeDecorator } from 'shared/lib/storybook/ThemeDecorator';
-import { ETheme } from 'app/providers/ThemeProvider/lib/ThemeContext';
+import { Button, EButtonSize } from './Button';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -12,22 +10,50 @@ export default {
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
 } as ComponentMeta<typeof Button>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
-Template.decorators = [themeDecorator(ETheme.DARK)];
 
-const Primary = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
+export const Primary = Template.bind({});
 Primary.args = {
-    buttonType: 'normal',
-    variant: 'primary',
+    children: 'Default Primary Button',
 };
 
-const Secondary = Template.bind({});
-// More on args: https://storybook.js.org/docs/react/writing-stories/args
+export const Secondary = Template.bind({});
 Secondary.args = {
-    buttonType: 'normal',
-    variant: 'primary',
+    variant: 'secondary',
+    children: 'Default Secondary Button',
 };
 
-Secondary.decorators = [themeDecorator(ETheme.LIGHT)];
+export const Normal = Template.bind({});
+Normal.args = {
+    children: 'Default Primary Button',
+};
+
+export const Square = Template.bind({});
+Square.args = {
+    buttonType: 'square',
+    children: 'Btn',
+};
+
+export const XL = Template.bind({});
+XL.args = {
+    size: EButtonSize.XL,
+    children: 'XL Button',
+};
+
+export const L = Template.bind({});
+L.args = {
+    size: EButtonSize.L,
+    children: 'L Button',
+};
+
+export const M = Template.bind({});
+M.args = {
+    size: EButtonSize.M,
+    children: 'M Button',
+};
+
+export const S = Template.bind({});
+S.args = {
+    size: EButtonSize.S,
+    children: 'S Button',
+};

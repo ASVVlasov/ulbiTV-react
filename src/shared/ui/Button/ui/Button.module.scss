@@ -1,11 +1,12 @@
 .Button {
   border-radius: 6px;
-  height: 56px;
   padding: 0 31px;
   font-style: normal;
   font-weight: 500;
   cursor: pointer;
-
+  @media screen and (max-width: 380px) {
+    padding: 0;
+  }
 }
 
 .primary {
