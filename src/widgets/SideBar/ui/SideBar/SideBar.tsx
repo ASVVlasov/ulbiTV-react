@@ -51,6 +51,7 @@ export const SideBar: FC = () => {
                 />
             </div>
             <Button
+                data-testid="toggleButton"
                 onClick={toggle}
                 buttonType={'square'}
                 className={classNames(cls.collapsedBtn)}
