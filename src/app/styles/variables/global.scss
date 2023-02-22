@@ -1,7 +1,7 @@
 @import "mixins";
 
 :root {
-    --font-family: monospace, 'Times New Roman', serif;
+    --font-family: consolas, menlo, 'Times New Roman', serif;
     --nav-bar-height: 75px;
     
     @include font-size('s');

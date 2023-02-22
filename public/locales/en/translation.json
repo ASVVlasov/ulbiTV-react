@@ -5,5 +5,8 @@
     "Свернуть": "Collapse",
     "Развернуть": "Expand",
     "404": "The page not found",
-    "Что-то пошло не так, попробуйте перезагрузить страницу": "Something went wrong. Please reload the page"
+    "Что-то пошло не так, попробуйте": "Something went wrong. Try to",
+    "перезагрузить страницу": "reload the page",
+    "Русский": "English",
+    "RU" : "EN"
 }

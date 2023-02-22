@@ -1,15 +1,35 @@
 .AppLink {
+    margin: 0 5px;
+
     &.primary {
-        a {
-            color: var(--secondary-text-color);
+      color: var(--primary-text-color);
 
-            &:hover {
-                color: var(--alternative-text-color);
-            }
-        }
+      &:hover {
+        color: var(--alternative-text-color);
+      }
     }
-}
 
-.secondary {
-    color: var(--secondary-color);
+    &.secondary {
+      color: var(--secondary-text-color);
+
+      &:hover {
+        color: var(--alternative-text-color);
+      }
+    }
+
+    &.size_s {
+      font: var(--font-s);
+    }
+
+    &.size_m {
+      font: var(--font-m);
+    }
+
+    &.size_l {
+      font: var(--font-l);
+    }
+
+    &.size_xl {
+      font: var(--font-xl);
+    }
 }

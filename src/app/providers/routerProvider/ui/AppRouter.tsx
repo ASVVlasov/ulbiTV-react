@@ -1,8 +1,8 @@
-import React, { Suspense } from 'react';
+import { type FC, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { RouteConfig } from 'shared/config/routeConfig/routeConfig';
 
-export const AppRouter = () => (
+export const AppRouter: FC = () => (
     <Suspense fallback={<div>loading...</div>}>
         <Routes>
             {Object.values(RouteConfig).map(({ path, element }) => (

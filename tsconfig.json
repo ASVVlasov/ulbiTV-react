@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "sourceMap": true,
         "outDir": "./dist/",
         "noImplicitAny": true,
         "module": "ESNext",
@@ -11,6 +12,7 @@
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "strictNullChecks": true,
+        "strictBindCallApply": true,
         "paths": {
             "*": ["./src/*"]
         }

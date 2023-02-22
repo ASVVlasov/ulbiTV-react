@@ -8,7 +8,7 @@ export function buildLoaders({ isDev }: IBuildOptions): webpack.RuleSetRule[] {
         use: ['@svgr/webpack'],
     };
     const assetsLoader: webpack.RuleSetRule = {
-        test: /\.(png|jpe?g)$/,
+        test: /\.(png|jpe?g|ttf)$/,
         type: 'asset/resource',
     };
     const typescriptLoader: webpack.RuleSetRule = {

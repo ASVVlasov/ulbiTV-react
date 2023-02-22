@@ -16,7 +16,7 @@ jobs:
         id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
         with:
           path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
@@ -30,17 +30,14 @@ jobs:
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
       - name: Lint application
         run: |
           npm run eslint
           npm run stylelint
-  test:
+  test-unit:
     needs: install
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        test: ['npm run test:unit', 'npm run test:ui:ci']
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
@@ -49,47 +46,71 @@ jobs:
         id: npm-cache
         with:
           path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install Dependencies
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
-      - name: Test application
-        run: ${{matrix.test}}
-  build:
+      - name: Unit Tests
+        run: npm run test:unit
+  test-ui:
+    permissions:
+      contents: write
+      pull-requests: write
     needs: install
-    continue-on-error: true
-    strategy:
-      matrix:
-        node-version: [18]
-        os: [ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
-      - name: Install Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: npm
       - name: Restore cache of NPM dependencies
         uses: actions/cache@v3
         id: npm-cache
         with:
           path: node_modules
-          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install Dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm ci
+      - name: Screenshot Tests
+        id: screenshots
+        run: npm run test:ui:ci
+      - name: after
+        if: ${{ failure() && steps.screenshots.conclusion == 'failure' }}
+        run: |
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -f .loki/difference
+          git add .
+          git checkout -b save-screenshots
+          git commit -am "screenshots failure"
+          git push -f origin save-screenshots
+  build:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo code
+        uses: actions/checkout@v3
+      - name: Restore cache of NPM dependencies
+        uses: actions/cache@v3
+        id: npm-cache
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
       - name: Install Dependencies
         if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
       - name: Build application
+        id: build
         run: |
           npm run build:prod
       - name: Upload Artifact
+        if: ${{ !failure() && steps.build.conclusion != 'failure' }}
         uses: actions/upload-artifact@v3
         with:
           path: build
           name: bundle
   deploy:
-    needs: build
+    needs: [build, lint, test-unit, test-ui]
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifact

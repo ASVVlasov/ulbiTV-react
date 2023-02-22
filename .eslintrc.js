@@ -7,6 +7,7 @@ module.exports = {
     extends: [
         'plugin:react/recommended',
         'xo',
+        'xo-typescript',
         'plugin:i18next/recommended',
         'prettier',
     ],
@@ -18,11 +19,10 @@ module.exports = {
     plugins: ['react', '@typescript-eslint', 'i18next', 'unused-imports'],
     rules: {
         'react/react-in-jsx-scope': 'off',
-        'max-len': ['error', { code: 80 }],
+        'max-len': ['error', { code: 120, ignoreComments: true }],
     },
     overrides: [
         {
-            extends: ['xo-typescript', 'prettier'],
             files: ['*.ts', '*.tsx'],
             rules: {
                 'react/display-name': 'off',
@@ -79,6 +79,7 @@ module.exports = {
         {
             files: ['*.stories.tsx'],
             rules: {
+                'i18next/no-literal-string': 'off',
                 '@typescript-eslint/no-unsafe-assignment': 'off',
                 '@typescript-eslint/consistent-type-assertions': 'off',
             },

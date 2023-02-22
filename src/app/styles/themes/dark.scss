@@ -1,12 +1,12 @@
 .app.dark {
     --primary-text-color: var(--color-primary-100);
-    --secondary-text-color: var(--color-primary-900);
+    --secondary-text-color: var(--color-primary-300);
+    --alternative-text-color: var(--color-primary-500);
     --primary-bg-color: var(--color-primary-900);
-    --secondary-bg-color: var(--color-primary-100);
-    --primary-border-color: var(--color-primary-500);
-    --secondary-border-color: var(--color-primary-700);
-    --alternative-text-color: var(--color-primary-300);
-    --alternative-bg-color: var(--color-primary-800);
+    --secondary-bg-color: var(--color-primary-800);
+    --alternative-bg-color: var(--color-primary-700);
+    --primary-border-color: var(--color-primary-200);
+    --secondary-border-color: var(--color-primary-400);
     --alternative-border-color: var(--color-primary-600);
     --success-color: var(--color-success-400);
     --danger-color: var(--color-danger-400);

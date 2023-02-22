@@ -1,8 +1,13 @@
+import type webpack from 'webpack';
 import { type RuleSetRule, type Configuration } from 'webpack';
 import path from 'path';
 import { buildCssLoader } from '../build/loaders/buildCssLoader';
 
-export default ({ config }: { config: Configuration }) => {
+export default ({
+    config,
+}: {
+    config: Configuration;
+}): webpack.Configuration => {
     config.resolve?.modules?.push(path.resolve(__dirname, '..', '..', 'src'));
     config.resolve?.extensions?.push('.ts', '.tsx');
     config.module?.rules?.push(buildCssLoader(true));

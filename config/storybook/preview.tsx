@@ -1,7 +1,7 @@
-import { StyleDecorator } from 'shared/lib/storybook/StyleDecorator';
 import { RouterDecorator } from 'shared/lib/storybook/RouterDecorator';
-
-import { type DecoratorFn } from '@storybook/react';
+import { StyleDecorator } from 'shared/lib/storybook/StyleDecorator';
+import { DEFAULT_VIEWPORT, MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
+import { themeDecorator } from 'shared/lib/storybook/ThemeDecorator';
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -12,19 +12,12 @@ export const parameters = {
             date: /Date$/,
         },
     },
+    viewport: {
+        viewports: {
+            ...MINIMAL_VIEWPORTS,
+            defaultViewport: DEFAULT_VIEWPORT,
+        },
+    },
 };
 
-const withLayout: DecoratorFn = (StoryFn) => {
-    const className = {
-        width: '100%',
-        display: 'flex',
-        padding: '15px 20px',
-    };
-    return (
-        <div className={`app light`} style={className}>
-            <StoryFn />
-        </div>
-    );
-};
-
-export const decorators = [withLayout, StyleDecorator, RouterDecorator];
+export const decorators = [StyleDecorator, RouterDecorator, themeDecorator];

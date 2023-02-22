@@ -1,3 +1,7 @@
-.someClass {
-    width: 100px;
+.LangSwitcher {
+  cursor: pointer;
+
+  &:hover {
+    color: var(--secondary-text-color);
+  }
 }

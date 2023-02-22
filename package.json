@@ -4,23 +4,24 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --env port=3000",
+    "start": "webpack serve --env port=4000",
     "build:prod": "webpack --env mode=production",
     "build:dev": "webpack --env mode=development",
-    "eslint": "eslint \"**/*.{ts,tsx}\"",
-    "eslint:fix": "eslint \"**/*.{ts,tsx}\" --fix",
+    "eslint": "eslint \"**/*.{ts,tsx}\" --color",
+    "eslint:fix": "eslint \"**/*.{ts,tsx}\" --color --fix",
     "stylelint": "stylelint \"**/*.scss\"",
     "stylelint:fix": "stylelint \"**/*.scss\" --fix",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
-    "test:ui": "loki test",
-    "test:ui:ci": "npm run storybook:build && loki --requireReference --reactUri file:./storybook-static",
-    "test:ui:ok": "npm run storybook:build && loki update --requireReference --reactUri file:./storybook-static",
-    "visual:report": "npm run visual:report:json && npm run visual:report:html",
+    "test:ui": "loki test --chromeFlags=\"--headless --disable-gpu --hide-scrollbars --no-sandbox\"",
+    "test:ui:ci": "npm run storybook:build && loki --requireReference --reactUri file:./storybook-static --chromeFlags=\"--headless --disable-gpu --hide-scrollbars --no-sandbox\"",
+    "test:ui:ok": "loki update",
+    "visual:report": "reg-cli ./.loki/current ./.loki/reference ./.loki/difference -R ./.loki/report.html",
     "visual:report:json": "node scripts/loki_reports.js",
     "visual:report:html": "reg-cli --from .loki/report.json --report .loki/report.html",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
     "storybook:build": "build-storybook -c ./config/storybook",
-    "prettier": "prettier --write *"
+    "prettier": "prettier --write *",
+    "chromatic": "npx chromatic --project-token=cc822a2f0302 -b storybook:build"
   },
   "keywords": [],
   "author": "",
@@ -35,6 +36,7 @@
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
     "@storybook/addon-links": "^6.5.16",
+    "@storybook/addon-viewport": "^6.5.16",
     "@storybook/addons": "^6.5.16",
     "@storybook/builder-webpack5": "^6.5.16",
     "@storybook/manager-webpack5": "^6.5.16",
@@ -56,6 +58,7 @@
     "@typescript-eslint/parser": "^5.52.0",
     "babel-jest": "^29.4.2",
     "babel-loader": "^8.3.0",
+    "chromatic": "^6.17.0",
     "css-loader": "^6.7.3",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
@@ -96,5 +99,7 @@
     "react-dom": "^17.0.2",
     "react-i18next": "^12.1.5",
     "react-router-dom": "^6.2.1"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "ulbi-tv-react@1.0.0"
 }
