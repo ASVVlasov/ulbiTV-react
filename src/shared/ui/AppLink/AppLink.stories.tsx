@@ -1,6 +1,6 @@
-import { type ComponentStory, type ComponentMeta } from '@storybook/react';
+import { type ComponentMeta, type ComponentStory } from '@storybook/react';
 
-import { AppLink } from './AppLink';
+import { AppLink, EAppLinkSize } from './AppLink';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -10,9 +10,7 @@ export default {
 } as ComponentMeta<typeof AppLink>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof AppLink> = (args) => (
-    <AppLink {...args} />
-);
+const Template: ComponentStory<typeof AppLink> = (args) => <AppLink {...args} />;
 
 export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
@@ -33,7 +31,7 @@ export const XL = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 XL.args = {
     to: '/',
-    size: 'xl',
+    size: EAppLinkSize.XL,
     children: 'XL Link',
 };
 
@@ -41,7 +39,7 @@ export const L = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 L.args = {
     to: '/',
-    size: 'l',
+    size: EAppLinkSize.L,
     children: 'L Link',
 };
 
@@ -49,7 +47,7 @@ export const M = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 M.args = {
     to: '/',
-    size: 'm',
+    size: EAppLinkSize.M,
     children: 'M Link',
 };
 
@@ -57,6 +55,6 @@ export const S = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 S.args = {
     to: '/',
-    size: 's',
+    size: EAppLinkSize.S,
     children: 'S Link',
 };
