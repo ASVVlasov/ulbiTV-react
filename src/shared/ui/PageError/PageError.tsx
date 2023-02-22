@@ -6,7 +6,7 @@ import { AppLink } from 'shared/ui/AppLink/AppLink';
 
 export const PageError: FC = () => {
     const { t } = useTranslation();
-    const reloadPage = () => {
+    const reloadPage = (): void => {
         location.reload();
     };
 

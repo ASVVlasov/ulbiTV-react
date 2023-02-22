@@ -10,12 +10,12 @@ export const SideBar: FC = () => {
     const { t } = useTranslation();
 
     const [collapsed, setCollapsed] = useState(false);
-    const toggle = () => {
+    const toggle = (): void => {
         setCollapsed((prev) => !prev);
     };
 
     const [error, setError] = useState(false);
-    const hackThisSite = () => {
+    const hackThisSite = (): void => {
         setError(true);
     };
 

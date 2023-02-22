@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import { Button } from 'shared/ui/Button/ui/Button';
 
-const MainPage = () => {
+const MainPage: FC = () => {
     const { t } = useTranslation();
     const [error, setError] = useState(false);
-    const hackThisSite = () => {
+    const hackThisSite = (): void => {
         setError(true);
     };
 

@@ -1,7 +1,7 @@
-import { type Story } from '@storybook/react';
+import { type DecoratorFn, type Story } from '@storybook/react';
 import { type CSSProperties } from 'react';
 
-export const themeDecorator = (StoryComponent: Story) => {
+export const themeDecorator: DecoratorFn = (StoryComponent: Story) => {
     const styles: CSSProperties = {
         display: 'flex',
         width: '100%',

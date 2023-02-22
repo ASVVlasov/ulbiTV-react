@@ -1,7 +1,7 @@
-import { type Story } from '@storybook/react';
+import { type DecoratorFn, type Story } from '@storybook/react';
 import { BrowserRouter } from 'react-router-dom';
 
-export const RouterDecorator = (StoryComponent: Story) => (
+export const RouterDecorator: DecoratorFn = (StoryComponent: Story) => (
     <BrowserRouter>
         <StoryComponent />
     </BrowserRouter>
