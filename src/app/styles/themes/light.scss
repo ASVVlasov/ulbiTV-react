@@ -1,4 +1,4 @@
-.app.light {
+.light {
     --primary-text-color: var(--color-primary-900);
     --secondary-text-color: var(--color-primary-700);
     --alternative-text-color: var(--color-primary-500);
@@ -8,6 +8,7 @@
     --primary-border-color: var(--color-primary-800);
     --secondary-border-color: var(--color-primary-700);
     --alternative-border-color: var(--color-primary-600);
+    --primary-overlay-color: rgb(66 129 164 / 60%);
     --success-color: var(--color-success-600);
     --danger-color: var(--color-danger-600);
     --warning-color: var(--color-warning-600);

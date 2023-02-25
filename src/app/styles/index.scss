@@ -10,7 +10,12 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
 
+.portal {
+    font: var(--font-m);
+    background: var(--primary-bg-color);
+    color: var(--primary-text-color);
 }
 
 .content-page {
