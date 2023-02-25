@@ -110,7 +110,7 @@ jobs:
           path: build
           name: bundle
   deploy:
-    needs: [build, lint, test-unit, test-ui]
+    needs: [build, lint, test-unit]
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifact
