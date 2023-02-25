@@ -4,19 +4,13 @@ module.exports = {
         es2021: true,
         jest: true,
     },
-    extends: [
-        'plugin:react/recommended',
-        'xo',
-        'xo-typescript',
-        'plugin:i18next/recommended',
-        'prettier',
-    ],
+    extends: ['plugin:react/recommended', 'xo', 'xo-typescript', 'plugin:i18next/recommended', 'prettier'],
     parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
     parser: '@typescript-eslint/parser',
-    plugins: ['react', '@typescript-eslint', 'i18next', 'unused-imports'],
+    plugins: ['react', '@typescript-eslint', 'i18next', 'unused-imports', 'react-hooks'],
     rules: {
         'react/react-in-jsx-scope': 'off',
         'max-len': ['error', { code: 120, ignoreComments: true }],
@@ -25,11 +19,10 @@ module.exports = {
         {
             files: ['*.ts', '*.tsx'],
             rules: {
+                'react-hooks/rules-of-hooks': 'error',
+                'react-hooks/exhaustive-deps': 'error',
                 'react/display-name': 'off',
-                '@typescript-eslint/consistent-type-definitions': [
-                    'error',
-                    'interface',
-                ],
+                '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
                 '@typescript-eslint/no-unused-vars': 'off',
                 'unused-imports/no-unused-imports': 'error',
                 'unused-imports/no-unused-vars': [

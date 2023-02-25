@@ -1,8 +1,13 @@
 @import "mixins";
+@import "colors";
 
 :root {
     --font-family: consolas, menlo, 'Times New Roman', serif;
     --nav-bar-height: 75px;
+
+    // z - Индексы
+
+    --modal-z-index: 100;
     
     @include font-size('s');
     @include font-size('m');
@@ -10,4 +15,5 @@
     @include font-size('xl');
     
     @include colors;
+
 }

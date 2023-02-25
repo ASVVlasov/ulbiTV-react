@@ -1,4 +1,3 @@
-import './styles/index.scss';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { classNames } from 'shared/lib';
 import { AppRouter } from 'app/providers/routerProvider';
@@ -7,6 +6,7 @@ import { SideBar } from 'widgets/SideBar';
 import { type FC, Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ErrorBoundary } from 'widgets/ErrorBoundary';
+import { Loader } from 'shared/ui/Loader/Loader';
 
 const App: FC = () => {
     const { theme } = useTheme();
@@ -14,7 +14,7 @@ const App: FC = () => {
         <BrowserRouter>
             <div className={classNames('app', {}, [theme])}>
                 <ErrorBoundary>
-                    <Suspense fallback={<div>loading...</div>}>
+                    <Suspense fallback={<Loader />}>
                         <NavBar />
                         <div className="content-page">
                             <SideBar />
