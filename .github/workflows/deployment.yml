@@ -6,7 +6,7 @@ on:
   pull_request:
     types: [opened, reopened, synchronize]
 env:
-  OS: windows-latest
+  OS: 'windows-latest'
 jobs:
   install:
     runs-on: ${{ env.OS }}
