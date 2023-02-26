@@ -6,6 +6,11 @@ on:
   pull_request:
     types: [opened, reopened, synchronize]
 jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo ${{vars}}
   install:
     runs-on: ${{ vars.WINDOWS }}
     steps:
