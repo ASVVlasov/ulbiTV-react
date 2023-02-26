@@ -13,7 +13,7 @@
     "stylelint:fix": "stylelint \"**/*.scss\" --fix",
     "test:unit": "jest --config ./config/jest/jest.config.ts",
     "test:ui": "loki test --chromeFlags=\"--headless --disable-gpu --hide-scrollbars --no-sandbox\"",
-    "test:ui:ci": "npm run storybook:build && loki --requireReference --reactUri file:./storybook-static --chromeFlags=\"--headless --disable-gpu --hide-scrollbars --no-sandbox\"",
+    "test:ui:ci": "npm run storybook:build && loki --requireReference --reactUri file:./storybook-static",
     "test:ui:ok": "loki approve",
     "visual:report": "reg-cli ./.loki/current ./.loki/reference ./.loki/difference -R ./.loki/report.html",
     "visual:report:json": "node scripts/loki_reports.js",
