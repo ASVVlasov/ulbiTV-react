@@ -1,11 +1,11 @@
 import { render, fireEvent } from '@testing-library/react';
 import { SideBar } from 'widgets/SideBar';
-import { TranslationProvider } from 'shared/lib/tests/renderWithTranslation/TranslationProvider';
+import { TestProvider } from 'shared/lib/tests/TestProvider';
 
 describe('SideBar', () => {
     test('should render', () => {
         const { getByTestId } = render(<SideBar />, {
-            wrapper: TranslationProvider,
+            wrapper: TestProvider,
         });
         expect(getByTestId('langSwitcher')).toBeInTheDocument();
 
@@ -13,7 +13,7 @@ describe('SideBar', () => {
     });
     test('should toggle', () => {
         const { getByTestId } = render(<SideBar />, {
-            wrapper: TranslationProvider,
+            wrapper: TestProvider,
         });
         const sidebar = getByTestId('sidebar');
         const button = getByTestId('toggleButton');

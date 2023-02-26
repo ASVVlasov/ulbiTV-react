@@ -1,5 +1,5 @@
 import { type FC, useEffect, useState } from 'react';
-import { classNames } from 'shared/lib';
+import { classNames } from 'shared/lib/classNames';
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher';
 import { useTranslation } from 'react-i18next';
 import { LangSwitcher } from 'shared/ui/LangSwitcher';
@@ -26,16 +26,9 @@ export const SideBar: FC = () => {
     }, [error]);
 
     return (
-        <div
-            data-testid="sidebar"
-            className={classNames(cls.SideBar, { [cls.collapsed]: collapsed })}
-        >
+        <div data-testid="sidebar" className={classNames(cls.SideBar, { [cls.collapsed]: collapsed })}>
             <div className="content">
-                <Button
-                    type="button"
-                    onClick={hackThisSite}
-                    buttonType={collapsed ? 'square' : 'normal'}
-                >
+                <Button type="button" onClick={hackThisSite} buttonType={collapsed ? 'square' : 'normal'}>
                     {t(collapsed ? '.|..' : 'Hack this site')}
                 </Button>
             </div>
@@ -45,10 +38,7 @@ export const SideBar: FC = () => {
                 })}
             >
                 <ThemeSwitcher />
-                <LangSwitcher
-                    collapsed={collapsed}
-                    data-testid="langSwitcher"
-                />
+                <LangSwitcher collapsed={collapsed} data-testid="langSwitcher" />
             </div>
             <Button
                 data-testid="toggleButton"

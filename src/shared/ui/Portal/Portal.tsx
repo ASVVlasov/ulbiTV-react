@@ -1,7 +1,7 @@
 import { type FC, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { useTheme } from 'app/providers/ThemeProvider';
-import { classNames } from 'shared/lib';
+import { classNames } from 'shared/lib/classNames';
 
 interface IPortalProps {
     children: ReactNode;

@@ -1,5 +1,5 @@
 import { type FC } from 'react';
-import { classNames } from 'shared/lib';
+import { classNames } from 'shared/lib/classNames';
 import { Link, type LinkProps } from 'react-router-dom';
 import cls from './AppLink.module.scss';
 export enum EAppLinkSize {
@@ -13,13 +13,7 @@ export interface IAppLinkProps extends LinkProps {
     size?: EAppLinkSize;
 }
 export const AppLink: FC<IAppLinkProps> = (props) => {
-    const {
-        to,
-        children,
-        variant = 'primary',
-        size = EAppLinkSize.M,
-        ...otherProps
-    } = props;
+    const { to, children, variant = 'primary', size = EAppLinkSize.M, ...otherProps } = props;
     const mods: Record<string, boolean> = {
         [cls[variant]]: true,
         [cls[size]]: true,

@@ -1,5 +1,5 @@
 import { type FC, useCallback, useState } from 'react';
-import { classNames } from 'shared/lib';
+import { classNames } from 'shared/lib/classNames';
 import { useTranslation } from 'react-i18next';
 import cls from './NavBar.module.scss';
 import { Button } from 'shared/ui/Button/ui/Button';

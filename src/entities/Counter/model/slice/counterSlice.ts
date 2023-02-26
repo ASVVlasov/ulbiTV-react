@@ -1,5 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { type ICounterSchema } from '../types/counterSchema';
+
 const initialState: ICounterSchema = {
     value: 0,
 };
@@ -20,5 +21,4 @@ export const counterSlice = createSlice({
     },
 });
 
-export const { actions: counterActions } = counterSlice;
-export const { reducer: counterReducer } = counterSlice;
+export const { actions: counterActions, reducer: counterReducer } = counterSlice;

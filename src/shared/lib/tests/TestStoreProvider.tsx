@@ -1,12 +1,16 @@
 import { type FC } from 'react';
+import { configureStore, type DeepPartial } from '@reduxjs/toolkit';
+import { rootReducer, type TRootState } from 'app/providers/StoreProvider/config/storeConfig';
 import { Provider } from 'react-redux';
-import { type DeepPartial } from '@reduxjs/toolkit';
-import { type IStateSchema } from 'app/providers/StoreProvider';
-import { createRootStore } from 'app/providers/StoreProvider/lib/config';
+
 export interface ITestStoreProviderProps {
-    initialState?: DeepPartial<IStateSchema>;
+    initialState?: DeepPartial<TRootState>;
 }
+
 export const TestStoreProvider: FC<ITestStoreProviderProps> = ({ initialState, children }) => {
-    const store = createRootStore(initialState as IStateSchema);
+    const store = configureStore({
+        reducer: rootReducer,
+        preloadedState: initialState as TRootState,
+    });
     return <Provider store={store}>{children}</Provider>;
 };

@@ -1,5 +1,5 @@
 import { type ButtonHTMLAttributes, type FC } from 'react';
-import { classNames } from 'shared/lib';
+import { classNames } from 'shared/lib/classNames';
 import cls from './Button.module.scss';
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'primary' | 'secondary';
@@ -29,10 +29,7 @@ export const Button: FC<IButtonProps> = ({
         [cls[buttonType]]: true,
     };
     return (
-        <button
-            className={classNames(cls.Button, mods, [className])}
-            {...otherProps}
-        >
+        <button className={classNames(cls.Button, mods, [className])} {...otherProps}>
             {children}
         </button>
     );

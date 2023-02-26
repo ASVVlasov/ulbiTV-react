@@ -1,17 +1,17 @@
 import { getCounter, getCounterValue } from './counter';
 import { type DeepPartial } from '@reduxjs/toolkit';
-import { type IStateSchema } from 'app/providers/StoreProvider';
+import { type TRootState } from 'app/providers/StoreProvider/config/storeConfig';
 
 describe('counter selectors', () => {
-    let deepState: DeepPartial<IStateSchema>;
-    let testState: IStateSchema;
+    let deepState: DeepPartial<TRootState>;
+    let testState: TRootState;
     beforeEach(() => {
         deepState = {
             counter: {
                 value: 10,
             },
         };
-        testState = deepState as IStateSchema;
+        testState = deepState as TRootState;
     });
     test('getCounter should return counter state', () => {
         expect(getCounter(testState)).toEqual({ value: 10 });

@@ -1,20 +1,15 @@
 import { render } from '@testing-library/react';
 import { AppLink, EAppLinkSize } from 'shared/ui/AppLink/AppLink';
-import { TestRouterProvider } from 'shared/lib/tests/TestRouterProvider';
+import { TestProvider } from 'shared/lib/tests/TestProvider';
 
 describe('AppLink', () => {
     test('should render with props', () => {
         const { getByTestId } = render(
-            <TestRouterProvider initialEntries={[{ pathname: '/test' }]}>
-                <AppLink
-                    to={'/test'}
-                    size={EAppLinkSize.S}
-                    variant="secondary"
-                    className={'test'}
-                >
+            <TestProvider initialEntries={[{ pathname: '/test' }]}>
+                <AppLink to={'/test'} size={EAppLinkSize.S} variant="secondary" className={'test'}>
                     test app link
                 </AppLink>
-            </TestRouterProvider>
+            </TestProvider>
         );
         const appLink = getByTestId('AppLink');
         expect(appLink).toBeInTheDocument();

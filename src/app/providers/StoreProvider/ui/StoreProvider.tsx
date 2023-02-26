@@ -1,14 +1,8 @@
 import { type FC } from 'react';
 import { Provider } from 'react-redux';
-import { type IStateSchema } from 'app/providers/StoreProvider/lib/stateSchema';
-import { createRootStore } from 'app/providers/StoreProvider/lib/config';
+import { store } from '../config/storeConfig';
 
-interface IStoreProviderProps {
-    initialState?: IStateSchema;
-}
-
-export const StoreProvider: FC<IStoreProviderProps> = (props) => {
-    const { children, initialState } = props;
-    const store = createRootStore(initialState);
+export const StoreProvider: FC = (props) => {
+    const { children } = props;
     return <Provider store={store}>{children}</Provider>;
 };

@@ -1,12 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import { TestStoreProvider } from 'shared/lib/tests/TestStoreProvider';
 import { Counter } from './Counter';
 import { type DeepPartial } from '@reduxjs/toolkit';
-import { type IStateSchema } from 'app/providers/StoreProvider';
-import { TranslationProvider } from 'shared/lib/tests/renderWithTranslation/TranslationProvider';
+import { type TRootState } from 'app/providers/StoreProvider';
+import { TestProvider } from 'shared/lib/tests/TestProvider';
 
 describe('Counter', () => {
-    let initialState: DeepPartial<IStateSchema>;
+    let initialState: DeepPartial<TRootState>;
     beforeEach(() => {
         initialState = {
             counter: {
@@ -14,11 +13,9 @@ describe('Counter', () => {
             },
         };
         render(
-            <TestStoreProvider initialState={initialState}>
-                <TranslationProvider>
-                    <Counter />
-                </TranslationProvider>
-            </TestStoreProvider>
+            <TestProvider initialState={initialState}>
+                <Counter />
+            </TestProvider>
         );
     });
     test('should render with initial state', () => {

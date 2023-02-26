@@ -1,6 +1,6 @@
 import { type FC, type MouseEvent, useCallback, useEffect } from 'react';
 import cls from './Modal.module.scss';
-import { classNames } from 'shared/lib';
+import { classNames } from 'shared/lib/classNames';
 import { Portal } from 'shared/ui/Portal/Portal';
 
 interface IModalProps {

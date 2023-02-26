@@ -1,5 +1,5 @@
-import { counterReducer, type ICounterSchema } from 'entities/Counter';
-import { counterActions } from 'entities/Counter/model/slice/counterSlice';
+import { counterReducer, counterActions } from './counterSlice';
+import { type ICounterSchema } from '../types/counterSchema';
 
 describe('counterSlice', () => {
     let testState: ICounterSchema;
