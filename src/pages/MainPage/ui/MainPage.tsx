@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { type FC, useEffect, useState } from 'react';
 import { Button } from 'shared/ui/Button/ui/Button';
+import { Counter } from 'entities/Counter';
 
 const MainPage: FC = () => {
     const { t } = useTranslation();
@@ -18,6 +19,8 @@ const MainPage: FC = () => {
     return (
         <div>
             {t('Главная')}
+
+            <Counter />
             <Button type="button" onClick={hackThisSite}>
                 {t('Hack this site')}
             </Button>
