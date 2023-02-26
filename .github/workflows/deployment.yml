@@ -6,14 +6,8 @@ on:
   pull_request:
     types: [opened, reopened, synchronize]
 jobs:
-  echo:
-    runs-on: ${{ vars.WINDOWS }}
-    environment: OS
-    steps:
-      - name: test
-        run: echo ${{toJSON(vars)}}
   install:
-    runs-on: ${{ vars.WINDOWS }}
+    runs-on: windows-latest
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
@@ -28,7 +22,7 @@ jobs:
         run: npm ci
   lint:
     needs: install
-    runs-on: ${{ vars.WINDOWS }}
+    runs-on: windows-latest
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
@@ -43,7 +37,7 @@ jobs:
           npm run stylelint
   test-unit:
     needs: install
-    runs-on: ${{ vars.WINDOWS }}
+    runs-on: windows-latest
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
@@ -63,7 +57,7 @@ jobs:
       contents: write
       pull-requests: write
     needs: install
-    runs-on: ${{ vars.WINDOWS }}
+    runs-on: windows-latest
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
@@ -92,7 +86,7 @@ jobs:
           git push -f origin save-screenshots
   build:
     needs: install
-    runs-on: ${{ vars.WINDOWS }}
+    runs-on: windows-latest
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
@@ -117,7 +111,7 @@ jobs:
           name: bundle
   deploy:
     needs: [build, lint, test-unit]
-    runs-on: ${{ vars.WINDOWS }}
+    runs-on: windows-latest
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v3
