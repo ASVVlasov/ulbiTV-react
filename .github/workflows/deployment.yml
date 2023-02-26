@@ -7,7 +7,7 @@ on:
     types: [opened, reopened, synchronize]
 jobs:
   install:
-    runs-on: ${{ vars.OS }}
+    runs-on: ${{ vars.WINDOWS }}
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
@@ -22,7 +22,7 @@ jobs:
         run: npm ci
   lint:
     needs: install
-    runs-on: ${{ vars.OS }}
+    runs-on: ${{ vars.WINDOWS }}
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
@@ -37,7 +37,7 @@ jobs:
           npm run stylelint
   test-unit:
     needs: install
-    runs-on: ${{ vars.OS }}
+    runs-on: ${{ vars.WINDOWS }}
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
@@ -57,7 +57,7 @@ jobs:
       contents: write
       pull-requests: write
     needs: install
-    runs-on: ${{ vars.OS }}
+    runs-on: ${{ vars.WINDOWS }}
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
@@ -86,7 +86,7 @@ jobs:
           git push -f origin save-screenshots
   build:
     needs: install
-    runs-on: ${{ vars.OS }}
+    runs-on: ${{ vars.WINDOWS }}
     steps:
       - name: Checkout repo code
         uses: actions/checkout@v3
@@ -111,7 +111,7 @@ jobs:
           name: bundle
   deploy:
     needs: [build, lint, test-unit]
-    runs-on: ${{ vars.OS }}
+    runs-on: ${{ vars.WINDOWS }}
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v3
