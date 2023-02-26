@@ -1,13 +1,9 @@
 import type webpack from 'webpack';
-import { type RuleSetRule, type Configuration } from 'webpack';
+import { type RuleSetRule, type Configuration, DefinePlugin } from 'webpack';
 import path from 'path';
 import { buildCssLoader } from '../build/loaders/buildCssLoader';
 
-export default ({
-    config,
-}: {
-    config: Configuration;
-}): webpack.Configuration => {
+export default ({ config }: { config: Configuration }): webpack.Configuration => {
     config.resolve?.modules?.push(path.resolve(__dirname, '..', '..', 'src'));
     config.resolve?.extensions?.push('.ts', '.tsx');
     config.module?.rules?.push(buildCssLoader(true));
@@ -20,6 +16,11 @@ export default ({
 
         return rule;
     });
+    config.plugins?.push(
+        new DefinePlugin({
+            __IS_DEV__: JSON.stringify(false),
+        })
+    );
     config.module?.rules?.push({
         test: /\.svg$/,
         use: ['@svgr/webpack'],
