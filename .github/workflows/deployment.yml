@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: test
-        run: echo ${{vars}}
+        run: echo ${{toJSON(vars)}}
   install:
     runs-on: ${{ vars.WINDOWS }}
     steps:
