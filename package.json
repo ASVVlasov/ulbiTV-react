@@ -20,8 +20,9 @@
     "visual:report:html": "reg-cli --from .loki/report.json --report .loki/report.html",
     "storybook": "start-storybook -p 6006 -c ./config/storybook",
     "storybook:build": "build-storybook -c ./config/storybook",
-    "prettier": "prettier --write *",
-    "chromatic": "npx chromatic --project-token=cc822a2f0302 -b storybook:build"
+    "prettier": "prettier --write *.{ts,tsx}",
+    "chromatic": "npx chromatic --project-token=cc822a2f0302 -b storybook:build",
+    "prepack": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -70,9 +71,11 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.4.2",
     "jest-environment-jsdom": "^29.4.2",
+    "lint-staged": "^13.1.2",
     "loki": "^0.31.0",
     "mini-css-extract-plugin": "^2.7.2",
     "prettier": "2.8.4",

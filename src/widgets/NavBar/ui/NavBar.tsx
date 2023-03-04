@@ -3,23 +3,25 @@ import { classNames } from 'shared/lib/classNames';
 import { useTranslation } from 'react-i18next';
 import cls from './NavBar.module.scss';
 import { Button } from 'shared/ui/Button/ui/Button';
-import { Modal } from 'shared/ui/Modal/Modal';
+import { LoginModal } from 'features/AuthByUsername';
 
 export const NavBar: FC = () => {
-    const { t } = useTranslation();
-    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-    const onToggleAuthModal = useCallback(() => {
-        setIsAuthModalOpen((prev) => !prev);
-    }, []);
+  const { t } = useTranslation();
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const onAuthModalShow = useCallback(() => {
+    setIsAuthModalOpen(true);
+  }, []);
 
-    return (
-        <div className={classNames(cls.navbar)}>
-            <div className={classNames(cls.navlinks)}>
-                <Button onClick={onToggleAuthModal}>{t('Войти')}</Button>
-                <Modal isOpen={isAuthModalOpen} onClose={onToggleAuthModal}>
-                    {t('login modal')}
-                </Modal>
-            </div>
-        </div>
-    );
+  const onAuthModalClose = useCallback(() => {
+    setIsAuthModalOpen(false);
+  }, []);
+
+  return (
+    <div className={classNames(cls.navbar)}>
+      <div className={classNames(cls.navlinks)}>
+        <Button onClick={onAuthModalShow}>{t('Войти')}</Button>
+        <LoginModal isOpen={isAuthModalOpen} onClose={onAuthModalClose} />
+      </div>
+    </div>
+  );
 };
