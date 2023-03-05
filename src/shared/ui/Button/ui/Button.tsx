@@ -1,5 +1,7 @@
 import { type ButtonHTMLAttributes, type FC } from 'react';
+
 import { classNames } from 'shared/lib/classNames';
+
 import cls from './Button.module.scss';
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary';
@@ -21,15 +23,17 @@ export const Button: FC<IButtonProps> = ({
   buttonType = 'normal',
   className,
   children,
+  disabled,
   ...otherProps
 }) => {
   const mods: Record<string, boolean> = {
     [cls[variant]]: true,
     [cls[size]]: true,
     [cls[buttonType]]: true,
+    [cls.disabled]: disabled ?? false,
   };
   return (
-    <button className={classNames(cls.Button, mods, [className])} {...otherProps}>
+    <button className={classNames(cls.Button, mods, [className])} disabled={disabled} {...otherProps}>
       {children}
     </button>
   );

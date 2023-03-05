@@ -1,13 +1,19 @@
-import { configureStore, type ReducersMapObject } from '@reduxjs/toolkit';
-import { counterReducer } from 'entities/Counter';
-
 import { type TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { userReducer } from 'entities/User';
+import { configureStore, type ReducersMapObject } from '@reduxjs/toolkit';
+
 import { type IStoreSchema } from 'app/providers/StoreProvider/config/storeSchema';
+
+import { loginReducer } from 'features/AuthByUsername';
+
+import { counterReducer } from 'entities/Counter';
+import { tokenReducer } from 'entities/Token';
+import { userReducer } from 'entities/User';
 
 export const rootReducer: ReducersMapObject<IStoreSchema> = {
   counter: counterReducer,
   user: userReducer,
+  login: loginReducer,
+  token: tokenReducer,
 };
 
 export const store = configureStore({

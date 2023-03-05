@@ -1,5 +1,7 @@
 import { type FC } from 'react';
+
 import { Modal } from 'shared/ui/Modal/Modal';
+
 import { LoginForm } from '../LoginForm/LoginForm';
 
 interface ILoginModalProps {

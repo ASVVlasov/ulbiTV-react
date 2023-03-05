@@ -1,6 +1,8 @@
 import { type ChangeEvent, type InputHTMLAttributes, memo } from 'react';
-import cls from './Input.module.scss';
+
 import { classNames } from 'shared/lib/classNames';
+
+import cls from './Input.module.scss';
 type THtmlInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>;
 interface IInputProps extends THtmlInputProps {
   value?: string;
