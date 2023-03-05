@@ -1,25 +1,51 @@
 import { type FC, useCallback, useState } from 'react';
-import { classNames } from 'shared/lib';
 import { useTranslation } from 'react-i18next';
-import cls from './NavBar.module.scss';
+import { useSelector } from 'react-redux';
+
+import { useAppDispatch } from 'app/providers/StoreProvider';
+
+import { LoginModal } from 'features/AuthByUsername';
+
+import { getUserDataSelector, userActions } from 'entities/User';
+
+import { classNames } from 'shared/lib/classNames';
 import { Button } from 'shared/ui/Button/ui/Button';
-import { Modal } from 'shared/ui/Modal/Modal';
+
+import cls from './NavBar.module.scss';
 
 export const NavBar: FC = () => {
-    const { t } = useTranslation();
-    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-    const onToggleAuthModal = useCallback(() => {
-        setIsAuthModalOpen((prev) => !prev);
-    }, []);
+  const { t } = useTranslation();
+  const appDispatch = useAppDispatch();
+  const user = useSelector(getUserDataSelector);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const onLoginHandler = useCallback(() => {
+    setIsAuthModalOpen(true);
+  }, []);
+  const onLogoutHandler = useCallback(() => {
+    appDispatch(userActions.logout());
+    setIsAuthModalOpen(true);
+  }, [appDispatch]);
 
+  const onAuthModalClose = useCallback(() => {
+    setIsAuthModalOpen(false);
+  }, []);
+
+  if (user) {
     return (
-        <div className={classNames(cls.navbar)}>
-            <div className={classNames(cls.navlinks)}>
-                <Button onClick={onToggleAuthModal}>{t('Войти')}</Button>
-                <Modal isOpen={isAuthModalOpen} onClose={onToggleAuthModal}>
-                    {t('login modal')}
-                </Modal>
-            </div>
+      <div className={classNames(cls.navbar)}>
+        <div className={classNames(cls.navlinks)}>
+          <Button onClick={onLogoutHandler}>{t('Выйти')}</Button>
         </div>
+      </div>
     );
+  }
+
+  return (
+    <div className={classNames(cls.navbar)}>
+      <div className={classNames(cls.navlinks)}>
+        <Button onClick={onLoginHandler}>{t('Войти')}</Button>
+        <LoginModal isOpen={isAuthModalOpen} onClose={onAuthModalClose} />
+      </div>
+    </div>
+  );
 };

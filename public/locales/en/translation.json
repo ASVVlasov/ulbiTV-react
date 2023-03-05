@@ -9,5 +9,8 @@
     "перезагрузить страницу": "reload the page",
     "Русский": "English",
     "RU" : "EN",
-    "Войти": "Log in"
+    "Войти": "Log in",
+    "Логин": "Login",
+    "Пароль": "Password"
+
 }
