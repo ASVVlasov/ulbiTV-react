@@ -12,6 +12,8 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['react', '@typescript-eslint', 'i18next', 'unused-imports', 'react-hooks', 'simple-import-sort'],
   rules: {
+    'object-shorthand': 'off',
+    '@typescript-eslint/no-dynamic-delete': 'off',
     'react/react-in-jsx-scope': 'off',
     'max-len': ['error', { code: 120, ignoreComments: true }],
   },
@@ -23,7 +25,7 @@ module.exports = {
         'import/order': 'off',
         'react/prop-types': 'off',
         'react-hooks/rules-of-hooks': 'error',
-        'react-hooks/exhaustive-deps': 'error',
+        'react-hooks/exhaustive-deps': 'warn',
         'react/display-name': 'off',
         '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
         '@typescript-eslint/no-unused-vars': 'off',
