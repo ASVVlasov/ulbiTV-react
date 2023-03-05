@@ -6,9 +6,7 @@ import { LOCAL_STORAGE_TOKEN_KEY } from 'shared/const/localStorage';
 
 import { type IUser, type IUserSchema } from '../types/user';
 
-const initialState: IUserSchema = {
-  isLoading: false,
-};
+const initialState: IUserSchema = {};
 export const userSlice = createSlice({
   name: 'user',
   initialState,

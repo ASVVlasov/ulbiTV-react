@@ -1,9 +1,9 @@
 import { type FC, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { useAppDispatch } from 'app/providers/StoreProvider';
+import { useAppDispatch, useAppSelector } from 'app/providers/StoreProvider';
 
+import { useAsyncStore } from 'shared/hooks';
 import { classNames } from 'shared/lib/classNames';
 import { Button } from 'shared/ui/Button/ui/Button';
 import { Input } from 'shared/ui/Input';
@@ -11,30 +11,30 @@ import { ETextVariant, Text } from 'shared/ui/Text/Text';
 
 import { getLoginState } from '../../model/selectors/selectors';
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
-import { loginActions } from '../../model/slice/loginSlice';
+import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 
 import cls from './LoginForm.module.scss';
 
-export const LoginForm: FC = () => {
+const LoginForm: FC = () => {
   const { t } = useTranslation();
-  const dispatch = useDispatch();
   const appDispatch = useAppDispatch();
-  const { username, password, error, isLoading } = useSelector(getLoginState);
+  useAsyncStore('login', loginReducer);
+  const { username, password, error, isLoading } = useAppSelector(getLoginState);
 
   const mods: Record<string, boolean> = {};
 
   const onChangeUsername = useCallback(
     (value: string) => {
-      dispatch(loginActions.setUsername(value));
+      appDispatch(loginActions.setUsername(value));
     },
-    [dispatch],
+    [appDispatch],
   );
 
   const onChangePassword = useCallback(
     (value: string) => {
-      dispatch(loginActions.setPassword(value));
+      appDispatch(loginActions.setPassword(value));
     },
-    [dispatch],
+    [appDispatch],
   );
 
   const onSubmit = useCallback(() => {
@@ -45,10 +45,10 @@ export const LoginForm: FC = () => {
     <div className={classNames(cls.LoginForm, mods)}>
       <Text title={t<string>('Форма авторизации')} />
       {error && <Text text={error} variant={ETextVariant.DANGER} />}
-      <Input type="text" onChange={onChangeUsername}>
+      <Input type="text" value={username} onChange={onChangeUsername}>
         {t('Логин')}
       </Input>
-      <Input type="password" onChange={onChangePassword}>
+      <Input type="password" value={password} onChange={onChangePassword}>
         {t('Пароль')}
       </Input>
       <Button className={cls.submitBtn} onClick={onSubmit} disabled={isLoading}>
@@ -57,3 +57,5 @@ export const LoginForm: FC = () => {
     </div>
   );
 };
+
+export default LoginForm;

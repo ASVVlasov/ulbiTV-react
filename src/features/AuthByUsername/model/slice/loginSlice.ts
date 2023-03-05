@@ -3,7 +3,7 @@ import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { loginByUsername } from '../services/loginByUsername/loginByUsername';
 import { type ILoginSchema } from '../types/loginSchema';
 
-const initialState: ILoginSchema = {
+export const initialState: ILoginSchema = {
   username: '',
   password: '',
   isLoading: false,

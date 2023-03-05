@@ -5,6 +5,6 @@ export interface IUser {
 
 export interface IUserSchema {
   user?: IUser;
-  isLoading: boolean;
+  isLoading?: boolean;
   error?: string;
 }

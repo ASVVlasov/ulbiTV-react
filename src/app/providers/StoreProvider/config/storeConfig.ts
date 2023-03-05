@@ -1,25 +1,27 @@
 import { type TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { configureStore, type ReducersMapObject } from '@reduxjs/toolkit';
 
-import { type IStoreSchema } from 'app/providers/StoreProvider/config/storeSchema';
-
-import { loginReducer } from 'features/AuthByUsername';
-
 import { counterReducer } from 'entities/Counter';
 import { tokenReducer } from 'entities/Token';
 import { userReducer } from 'entities/User';
 
-export const rootReducer: ReducersMapObject<IStoreSchema> = {
+import { createReducerManager } from './reducerManager';
+import { type IStoreSchema, type IStoreWithReducerManager } from './storeSchema';
+
+export const rootReducers: ReducersMapObject<IStoreSchema> = {
   counter: counterReducer,
   user: userReducer,
-  login: loginReducer,
   token: tokenReducer,
 };
 
+const reducerManager = createReducerManager(rootReducers);
+
 export const store = configureStore({
-  reducer: rootReducer,
+  reducer: reducerManager.reduce,
   devTools: __IS_DEV__,
 });
+
+(store as IStoreWithReducerManager).reducerManager = reducerManager;
 
 export type TRootState = ReturnType<typeof store.getState>;
 export type TAppDispatch = typeof store.dispatch;

@@ -44,14 +44,17 @@ export const Modal: FC<IModalProps> = (props) => {
       window.removeEventListener('keydown', onKeyDown);
     }
   }, [isOpen, onKeyDown]);
-
-  return (
-    <Portal>
-      <div className={classNames(cls.Modal, mods, [className])} onClick={closeHandler}>
-        <div className={classNames(cls.content)} onClick={contentClickHandler}>
-          {children}
+  if (isOpen) {
+    return (
+      <Portal>
+        <div className={classNames(cls.Modal, mods, [className])} onClick={closeHandler}>
+          <div className={classNames(cls.content)} onClick={contentClickHandler}>
+            {children}
+          </div>
         </div>
-      </div>
-    </Portal>
-  );
+      </Portal>
+    );
+  }
+
+  return null;
 };
