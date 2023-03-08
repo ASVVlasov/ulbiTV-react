@@ -1,10 +1,10 @@
 import { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const MainPage: FC = () => {
+const ProfilePage: FC = () => {
   const { t } = useTranslation();
 
-  return <div>{t('Главная')}</div>;
+  return <div>{t('Профиль')}</div>;
 };
 
-export default MainPage;
+export default ProfilePage;

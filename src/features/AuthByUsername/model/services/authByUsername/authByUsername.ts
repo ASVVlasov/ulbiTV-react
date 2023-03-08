@@ -3,37 +3,31 @@ import { type AxiosResponse, isAxiosError } from 'axios';
 
 import { type TRootState } from 'app/providers/StoreProvider';
 
-import { tokenActions } from 'entities/Token';
+import { type IAuthByUsernameSchema } from 'features/AuthByUsername/model/types/authByUsernameSchema';
+
+import { authActions, type IAuthSchema } from 'entities/Auth';
 import { currentUser } from 'entities/User';
 
 import { axiosInstance } from 'shared/api/api';
-
-import { type ILoginSchema } from '../../types/loginSchema';
 
 interface IError {
   message: string;
 }
 
-interface ILoginResponse {
-  token: string;
-}
-
-export type TLoginByUsername = Pick<ILoginSchema, 'username' | 'password'>;
-
-export const loginByUsername = createAsyncThunk<
-  ILoginResponse,
-  TLoginByUsername,
+export const authByUserName = createAsyncThunk<
+  IAuthSchema,
+  IAuthByUsernameSchema,
   { rejectValue: string; state: TRootState }
->('login/loginByUsername', async ({ username, password }, { rejectWithValue, dispatch }) => {
+>('auth/authByUsername', async ({ email, password }, { rejectWithValue, dispatch }) => {
   try {
-    const response = await axiosInstance.post<ILoginResponse, AxiosResponse<ILoginResponse>, TLoginByUsername>(
-      '/auth/login',
+    const response = await axiosInstance.post<IAuthSchema, AxiosResponse<IAuthSchema>, IAuthByUsernameSchema>(
+      '/auth/signin',
       {
-        username,
+        email,
         password,
       },
     );
-    dispatch(tokenActions.setToken(response.data.token));
+    dispatch(authActions.setToken(response.data.access_token));
     void dispatch(currentUser());
     return response.data;
   } catch (err) {

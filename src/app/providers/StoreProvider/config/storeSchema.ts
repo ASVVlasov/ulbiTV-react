@@ -1,19 +1,19 @@
 import { type AnyAction, type Reducer, type ReducersMapObject } from '@reduxjs/toolkit';
 import { type EnhancedStore } from '@reduxjs/toolkit/src/configureStore';
 
-import { type ILoginSchema } from 'features/AuthByUsername';
+import { type IAuthByUsernameSchema } from 'features/AuthByUsername';
 
+import { type IAuthSchema } from 'entities/Auth';
 import { type ICounterSchema } from 'entities/Counter';
-import { type ITokenSchema } from 'entities/Token';
 import { type IUserSchema } from 'entities/User';
 
 export interface IStoreSchema {
   counter: ICounterSchema;
   user: IUserSchema;
-  token: ITokenSchema;
+  auth: IAuthSchema;
 
   // Асинхронные редьюсеры
-  login?: ILoginSchema;
+  authByUserName?: IAuthByUsernameSchema;
 }
 
 export type TStoreSchemaKey = keyof IStoreSchema;

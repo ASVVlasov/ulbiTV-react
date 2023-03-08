@@ -1,6 +1,6 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import { currentUser } from 'entities/User/model/services/currentUser/currentUser';
+import { currentUser } from 'entities/User/model/services/currentUser';
 
 import { LOCAL_STORAGE_TOKEN_KEY } from 'shared/const/localStorage';
 

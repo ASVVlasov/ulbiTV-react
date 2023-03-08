@@ -1,11 +1,10 @@
-import { lazy } from 'react';
+import { type FC, lazy } from 'react';
 
-export const MainPageAsync = lazy(
-    async () =>
-        new Promise((resolve) => {
-            setTimeout(() => {
-                // @ts-expect-error emulation throttle
-                resolve(import('./MainPage'));
-            }, 1500);
-        })
+export const MainPageAsync = lazy<FC>(
+  async () =>
+    new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(import('./MainPage'));
+      }, 1500);
+    }),
 );
