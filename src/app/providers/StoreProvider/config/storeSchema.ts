@@ -4,15 +4,15 @@ import { type EnhancedStore } from '@reduxjs/toolkit/src/configureStore';
 import { type IAuthByUsernameSchema } from 'features/AuthByUsername';
 
 import { type IAuthSchema } from 'entities/Auth';
-import { type ICounterSchema } from 'entities/Counter';
+import { type IProfileSchema } from 'entities/Profile';
 import { type IUserSchema } from 'entities/User';
 
 export interface IStoreSchema {
-  counter: ICounterSchema;
   user: IUserSchema;
   auth: IAuthSchema;
 
   // Асинхронные редьюсеры
+  profile?: IProfileSchema;
   authByUserName?: IAuthByUsernameSchema;
 }
 

@@ -2,14 +2,12 @@ import { type TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux
 import { configureStore, type ReducersMapObject } from '@reduxjs/toolkit';
 
 import { authReducer } from 'entities/Auth';
-import { counterReducer } from 'entities/Counter';
 import { userReducer } from 'entities/User';
 
 import { createReducerManager } from './reducerManager';
 import { type IStoreSchema, type IStoreWithReducerManager } from './storeSchema';
 
 export const rootReducers: ReducersMapObject<IStoreSchema> = {
-  counter: counterReducer,
   user: userReducer,
   auth: authReducer,
 };
