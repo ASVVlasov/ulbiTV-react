@@ -3,23 +3,18 @@ import { type AxiosResponse, isAxiosError } from 'axios';
 
 import { type IThunkExtra } from 'app/providers/StoreProvider';
 
-import { type IUser } from 'entities/User';
+import { type IProfile } from '../types/Profile';
 
 interface IError {
   message: string;
 }
 
-interface ICurrentUser {
-  userId: string;
-  user: IUser;
-}
-
-export const currentUser = createAsyncThunk<IUser, undefined, { rejectValue: string; extra: IThunkExtra }>(
-  'user/currentUser',
+export const fetchProfile = createAsyncThunk<IProfile, undefined, { rejectValue: string; extra: IThunkExtra }>(
+  'profile/fetchProfile',
   async (_, { rejectWithValue, extra }) => {
     try {
-      const response = await extra.api.get<ICurrentUser, AxiosResponse<ICurrentUser>>('/auth/current');
-      return response.data.user;
+      const response = await extra.api.get<IProfile, AxiosResponse<IProfile>>('/users/userInfo');
+      return response.data;
     } catch (err) {
       if (isAxiosError<IError>(err)) {
         if (err.response?.data.message) {

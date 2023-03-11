@@ -1,15 +1,24 @@
-import { type FC } from 'react';
-import { useTranslation } from 'react-i18next';
+import { type FC, useEffect } from 'react';
 
-import { profileReducer } from 'entities/Profile';
+import { useAppDispatch } from 'app/providers/StoreProvider';
+
+import { fetchProfile, ProfileCard, profileReducer } from 'entities/Profile';
 
 import { useAsyncStore } from 'shared/hooks';
 
 const ProfilePage: FC = () => {
-  const { t } = useTranslation();
+  const appDispatch = useAppDispatch();
   useAsyncStore('profile', profileReducer);
 
-  return <div>{t('Профиль')}</div>;
+  useEffect(() => {
+    void appDispatch(fetchProfile());
+  }, []);
+
+  return (
+    <div>
+      <ProfileCard />
+    </div>
+  );
 };
 
 export default ProfilePage;

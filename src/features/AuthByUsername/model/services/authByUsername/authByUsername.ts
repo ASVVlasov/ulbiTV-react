@@ -1,14 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { type AxiosResponse, isAxiosError } from 'axios';
 
-import { type TRootState } from 'app/providers/StoreProvider';
+import { type IThunkExtra, type TRootState } from 'app/providers/StoreProvider';
 
 import { type IAuthByUsernameSchema } from 'features/AuthByUsername/model/types/authByUsernameSchema';
 
 import { authActions, type IAuthSchema } from 'entities/Auth';
 import { currentUser } from 'entities/User';
-
-import { axiosInstance } from 'shared/api/api';
 
 interface IError {
   message: string;
@@ -17,10 +15,10 @@ interface IError {
 export const authByUserName = createAsyncThunk<
   IAuthSchema,
   IAuthByUsernameSchema,
-  { rejectValue: string; state: TRootState }
->('auth/authByUsername', async ({ email, password }, { rejectWithValue, dispatch }) => {
+  { rejectValue: string; state: TRootState; extra: IThunkExtra }
+>('auth/authByUsername', async ({ email, password }, { rejectWithValue, dispatch, extra }) => {
   try {
-    const response = await axiosInstance.post<IAuthSchema, AxiosResponse<IAuthSchema>, IAuthByUsernameSchema>(
+    const response = await extra.api.post<IAuthSchema, AxiosResponse<IAuthSchema>, IAuthByUsernameSchema>(
       '/auth/signin',
       {
         email,

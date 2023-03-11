@@ -1,5 +1,6 @@
-import { type AnyAction, type Reducer, type ReducersMapObject } from '@reduxjs/toolkit';
+import { type Reducer, type ReducersMapObject } from '@reduxjs/toolkit';
 import { type EnhancedStore } from '@reduxjs/toolkit/src/configureStore';
+import { type AxiosInstance } from 'axios';
 
 import { type IAuthByUsernameSchema } from 'features/AuthByUsername';
 
@@ -20,11 +21,15 @@ export type TStoreSchemaKey = keyof IStoreSchema;
 
 export interface IReducerManager {
   getReducerMap: () => ReducersMapObject<IStoreSchema>;
-  reduce: (state: IStoreSchema, action: AnyAction) => IStoreSchema;
+  reduce: Reducer<IStoreSchema>;
   add: (key: TStoreSchemaKey, reducer: Reducer) => void;
   remove: (key: TStoreSchemaKey) => void;
 }
 
 export interface IStoreWithReducerManager extends EnhancedStore {
   reducerManager: IReducerManager;
+}
+
+export interface IThunkExtra {
+  api: AxiosInstance;
 }

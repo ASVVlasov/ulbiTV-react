@@ -1,3 +1,5 @@
 import { type TRootState } from 'app/providers/StoreProvider';
 
-export const getProfileStateSelector = (state: TRootState) => state.profile;
+import { initialState } from '../slice/ProfileSlice';
+
+export const getProfileStateSelector = (state: TRootState) => state.profile ?? initialState;
