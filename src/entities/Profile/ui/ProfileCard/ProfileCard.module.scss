@@ -1,0 +1,19 @@
+.ProfileCard {
+  padding: 20px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fields {
+  flex-grow: 1;
+}
+
+.avatar {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

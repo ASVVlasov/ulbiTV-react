@@ -12,6 +12,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['react', '@typescript-eslint', 'i18next', 'unused-imports', 'react-hooks', 'simple-import-sort'],
   rules: {
+    '@typescript-eslint/unified-signatures': 'off',
     'object-shorthand': 'off',
     '@typescript-eslint/no-dynamic-delete': 'off',
     'react/react-in-jsx-scope': 'off',

@@ -1,10 +1,11 @@
-import { lazy } from 'react';
+import { type FC, lazy } from 'react';
 
-export const LoginFormAsync = lazy(
+import { type ILoginFormProps } from './LoginForm';
+
+export const LoginFormAsync = lazy<FC<ILoginFormProps>>(
   async () =>
     new Promise((resolve) => {
       setTimeout(() => {
-        // @ts-expect-error emulation throttle
         resolve(import('./LoginForm'));
       }, 1500);
     }),

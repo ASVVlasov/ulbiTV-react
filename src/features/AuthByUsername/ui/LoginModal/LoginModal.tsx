@@ -1,4 +1,4 @@
-import { type FC, Suspense } from 'react';
+import { type FC, Suspense, useCallback } from 'react';
 
 import { LoginFormAsync } from 'features/AuthByUsername/ui/LoginForm/LoginForm.async';
 
@@ -12,10 +12,14 @@ interface ILoginModalProps {
 
 export const LoginModal: FC<ILoginModalProps> = (props) => {
   const { isOpen, onClose } = props;
+  const onSuccessHandler = useCallback(() => {
+    onClose();
+  }, [onClose]);
+
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <Suspense fallback={<Loader />}>
-        <LoginFormAsync />
+        <LoginFormAsync onSuccess={onSuccessHandler} />
       </Suspense>
     </Modal>
   );

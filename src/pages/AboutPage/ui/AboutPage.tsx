@@ -1,16 +1,9 @@
 import { type FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Counter } from 'entities/Counter';
-
 const AboutPage: FC = () => {
   const { t } = useTranslation('aboutPage');
-  return (
-    <div>
-      {t('О сайте')}
-      <Counter />
-    </div>
-  );
+  return <div>{t('О сайте')}</div>;
 };
 
 export default AboutPage;

@@ -17,9 +17,9 @@ export const createReducerManager = (initialReducers: ReducersMapObject<IStoreSc
 
     // The root reducer function exposed by this object
     // This will be passed to the store
-    reduce: (state: IStoreSchema, action: AnyAction) => {
+    reduce: (state, action: AnyAction) => {
       // If any reducers have been removed, clean up their state first
-      if (keysToRemove.length > 0) {
+      if (keysToRemove.length > 0 && state) {
         state = { ...state };
         for (const key of keysToRemove) {
           delete state[key];

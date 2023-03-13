@@ -2,14 +2,17 @@ import axios from 'axios';
 
 import { LOCAL_STORAGE_TOKEN_KEY } from '../const/localStorage';
 
-const axiosInstance = axios.create({ baseURL: 'http://localhost:5000/api' });
-axiosInstance.interceptors.request.use((requestConfig) => {
+export const $api = axios.create({ baseURL: 'http://localhost:5000/api' });
+
+$api.interceptors.request.use(async (requestConfig) => {
   const token = localStorage.getItem(LOCAL_STORAGE_TOKEN_KEY);
   if (token) {
     requestConfig.headers.setAuthorization(`Bearer ${token}`);
   }
 
-  return requestConfig;
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(requestConfig);
+    }, 2000);
+  });
 });
-
-export { axiosInstance };

@@ -1,26 +1,26 @@
 import { type FC, Suspense, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 
 import { AppRouter } from 'app/providers/routerProvider';
+import { useAppDispatch } from 'app/providers/StoreProvider';
 import { useTheme } from 'app/providers/ThemeProvider';
 
 import { ErrorBoundary } from 'widgets/ErrorBoundary';
 import { NavBar } from 'widgets/NavBar';
 import { SideBar } from 'widgets/SideBar';
 
-import { tokenActions } from 'entities/Token';
+import { currentUser } from 'entities/User';
 
 import { classNames } from 'shared/lib/classNames';
 import { Loader } from 'shared/ui/Loader/Loader';
 
 const App: FC = () => {
   const { theme } = useTheme();
-  const dispatch = useDispatch();
+  const appDispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(tokenActions.loadToken());
-  }, [dispatch]);
+    void appDispatch(currentUser());
+  }, []);
 
   return (
     <BrowserRouter>
