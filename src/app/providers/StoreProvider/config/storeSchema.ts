@@ -3,9 +3,9 @@ import { type EnhancedStore } from '@reduxjs/toolkit/src/configureStore';
 import { type AxiosInstance } from 'axios';
 
 import { type IAuthByUsernameSchema } from 'features/AuthByUsername';
+import { type IProfileSchema } from 'features/EditableProfile';
 
 import { type IAuthSchema } from 'entities/Auth';
-import { type IProfileSchema } from 'entities/Profile';
 import { type IUserSchema } from 'entities/User';
 
 export interface IStoreSchema {

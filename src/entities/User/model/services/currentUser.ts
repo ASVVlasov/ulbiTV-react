@@ -9,17 +9,12 @@ interface IError {
   message: string;
 }
 
-interface ICurrentUser {
-  userId: string;
-  user: IUser;
-}
-
 export const currentUser = createAsyncThunk<IUser, undefined, { rejectValue: string; extra: IThunkExtra }>(
   'user/currentUser',
   async (_, { rejectWithValue, extra }) => {
     try {
-      const response = await extra.api.get<ICurrentUser, AxiosResponse<ICurrentUser>>('/auth/current');
-      return response.data.user;
+      const response = await extra.api.get<IUser, AxiosResponse<IUser>>('/users/current');
+      return response.data;
     } catch (err) {
       if (isAxiosError<IError>(err)) {
         if (err.response?.data.message) {

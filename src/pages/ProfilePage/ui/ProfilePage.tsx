@@ -1,24 +1,7 @@
-import { type FC, useEffect } from 'react';
+import { type FC } from 'react';
 
-import { useAppDispatch } from 'app/providers/StoreProvider';
+import { EditableProfile } from 'features/EditableProfile/ui/EditableProfile/EditableProfile';
 
-import { fetchProfile, ProfileCard, profileReducer } from 'entities/Profile';
-
-import { useAsyncStore } from 'shared/hooks';
-
-const ProfilePage: FC = () => {
-  const appDispatch = useAppDispatch();
-  useAsyncStore('profile', profileReducer);
-
-  useEffect(() => {
-    void appDispatch(fetchProfile());
-  }, []);
-
-  return (
-    <div>
-      <ProfileCard />
-    </div>
-  );
-};
+const ProfilePage: FC = () => <EditableProfile />;
 
 export default ProfilePage;

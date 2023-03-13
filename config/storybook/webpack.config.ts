@@ -20,6 +20,7 @@ export default ({ config }: { config: Configuration }): webpack.Configuration =>
   config.plugins?.push(
     new DefinePlugin({
       __IS_DEV__: JSON.stringify(false),
+      __BASE_URL__: JSON.stringify(''),
     }),
   );
   config.module?.rules?.push({

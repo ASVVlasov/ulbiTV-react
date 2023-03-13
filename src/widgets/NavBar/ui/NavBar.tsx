@@ -31,7 +31,7 @@ export const NavBar: FC = () => {
 
   return (
     <div className={classNames(cls.navbar)}>
-      <div className={cls.user}>{user?.username}</div>
+      <div className={cls.user}>{user?.email}</div>
       <div className={classNames(cls.navlinks)}>
         <Button onClick={onLoginHandler}>{user ? t('Выйти') : t('Войти')}</Button>
         <LoginModal isOpen={isAuthModalOpen} onClose={onAuthModalClose} />

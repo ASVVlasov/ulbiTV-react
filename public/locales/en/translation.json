@@ -1,16 +1,16 @@
 {
-    "Тестовый перевод": "Test translation",
-    "Перевод": "Translate",
-    "Главная": "Main",
-    "Свернуть": "Collapse",
-    "Развернуть": "Expand",
-    "404": "The page not found",
-    "Что-то пошло не так, попробуйте": "Something went wrong. Try to",
-    "перезагрузить страницу": "reload the page",
-    "Русский": "English",
-    "RU" : "EN",
-    "Войти": "Log in",
-    "Логин": "Login",
-    "Пароль": "Password"
-
+  "Тестовый перевод": "Test translation",
+  "Перевод": "Translate",
+  "Главная": "Main",
+  "Свернуть": "Collapse",
+  "Развернуть": "Expand",
+  "404": "The page not found",
+  "Что-то пошло не так, попробуйте": "Something went wrong. Try to",
+  "перезагрузить страницу": "reload the page",
+  "Русский": "English",
+  "RU": "EN",
+  "Войти": "Log in",
+  "Логин": "Login",
+  "Пароль": "Password",
+  "Изменить": "Change"
 }

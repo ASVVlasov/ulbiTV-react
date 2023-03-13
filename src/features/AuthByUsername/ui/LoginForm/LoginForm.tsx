@@ -52,12 +52,8 @@ const LoginForm: FC<ILoginFormProps> = ({ onSuccess }) => {
     <div className={classNames(cls.LoginForm, mods)}>
       <Text title={t<string>('Форма авторизации')} />
       {error && <Text text={error} variant={ETextVariant.DANGER} />}
-      <Input type="text" value={email} onChange={onChangeUsername}>
-        {t('Логин')}
-      </Input>
-      <Input type="password" value={password} onChange={onChangePassword}>
-        {t('Пароль')}
-      </Input>
+      <Input type="text" label={t<string>('Логин')} value={email} onChange={onChangeUsername} />
+      <Input type="password" label={t<string>('Пароль')} value={password} onChange={onChangePassword} />
       <Button className={cls.submitBtn} onClick={onSubmit} disabled={isLoading}>
         {t('Войти')}
       </Button>
